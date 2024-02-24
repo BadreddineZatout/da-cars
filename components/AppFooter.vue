@@ -2,9 +2,9 @@
   <div class="bg-black px-14 pb-2 pt-5 text-white">
     <div class="flex justify-around">
       <div class="w-1/6">
-        <a href="/">
+        <NuxtLink to="/">
           <img src="/logo.jpg" alt="logo" />
-        </a>
+        </NuxtLink>
       </div>
       <div class="w-4/6 flex-col">
         <h1 class="text-2xl font-bold">DA-Cars</h1>

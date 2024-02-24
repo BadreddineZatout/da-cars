@@ -1,14 +1,14 @@
 <template>
   <div class="flex w-full items-center justify-between bg-black px-10">
-    <a href="/" class="w-1/12">
+    <NuxtLink to="/" class="w-1/12">
       <img src="/logo.jpg" alt="logo" />
-    </a>
+    </NuxtLink>
     <div
       class="flex w-1/6 items-center justify-between font-semibold text-white"
     >
-      <a class="hover:underline" href="/services">Services</a>
-      <a class="hover:underline" href="/vehicles">Vehicles</a>
-      <a class="hover:underline" href="#contact">Contact</a>
+      <NuxtLink class="hover:underline" to="/services">Services</NuxtLink>
+      <NuxtLink class="hover:underline" to="/vehicles">Vehicles</NuxtLink>
+      <NuxtLink class="hover:underline" to="#contact">Contact</NuxtLink>
     </div>
   </div>
 </template>
