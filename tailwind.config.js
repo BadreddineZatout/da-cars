@@ -9,7 +9,11 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        lochmara: "#007CBC",
+      },
+    },
   },
   plugins: [],
 };

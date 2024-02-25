@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black px-14 pb-2 pt-5 text-white">
+  <div id="contact" class="bg-black px-14 pb-2 pt-5 text-white">
     <div class="flex justify-around">
       <div class="w-1/6">
         <NuxtLink to="/">

@@ -1,3 +1,6 @@
 <template>
-  <NuxtWelcome />
+  <Description />
+  <Services />
+  <Vehicles />
+  <PopularBrands />
 </template>
