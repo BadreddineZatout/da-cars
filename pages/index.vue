@@ -1,5 +1,5 @@
 <template>
   <Description />
   <Services />
-  <Ads />
+  <Vehicles />
 </template>

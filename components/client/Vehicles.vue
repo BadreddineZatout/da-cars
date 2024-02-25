@@ -3,7 +3,7 @@
     <div
       class="my-5 flex items-center justify-between border-b border-gray-200"
     >
-      <h1 class="text-3xl font-semibold">Ads</h1>
+      <h1 class="text-3xl font-semibold">Recommanded For You</h1>
       <a
         class="flex items-center hover:font-semibold hover:underline"
         href="/vehicles"
@@ -25,13 +25,17 @@
       ></a>
     </div>
     <div class="grid grid-cols-3 gap-5">
-      <Ad v-for="ad in ads" :key="ad.id" :ad="ad" />
+      <Vehicle
+        v-for="vehicle in vehicles"
+        :key="vehicle.id"
+        :vehicle="vehicle"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-const ads = ref([
+const vehicles = ref([
   {
     id: 1,
     brand: "BMW 520",
@@ -40,6 +44,7 @@ const ads = ref([
     price: 11500,
     description:
       "Used vehicle, Single 03/2012, 210.000 km, 135 kW (184 HP), Diesel, Self-winding Machine 4./100km (komb.), 13 CO2/km (cooker)",
+    address: "35274 Kirchhain",
   },
   {
     id: 2,
@@ -49,6 +54,7 @@ const ads = ref([
     price: 11500,
     description:
       "Used vehicle, Single 03/2012, 210.000 km, 135 kW (184 HP), Diesel, Self-winding Machine 4./100km (komb.), 13 CO2/km (cooker)",
+    address: "35274 Kirchhain",
   },
 ]);
 </script>
