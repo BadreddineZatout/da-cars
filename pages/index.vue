@@ -1,3 +1,4 @@
 <template>
   <Description />
+  <Services />
 </template>
