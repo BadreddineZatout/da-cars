@@ -13,7 +13,7 @@ datasource db {
 model Brand {
   id        Int      @id @default(autoincrement())
   name      String
-  parentId  Int?     @unique
+  parentId  Int?
   parent    Brand?   @relation("ParentBrand", fields: [parentId], references: [id])
   subBrands Brand[]  @relation("ParentBrand")
   createdAt DateTime @default(now())

@@ -2,5 +2,8 @@
   <Description />
   <Services />
   <Vehicles />
-  <PopularBrands />
+  <PopularBrands :brands="brands" />
 </template>
+<script setup lang="ts">
+const { data: brands } = await useFetch("/api/brands");
+</script>
