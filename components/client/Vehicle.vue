@@ -1,6 +1,6 @@
 <template>
   <a
-    class="border-lochmara col-span-1 overflow-hidden rounded-lg border pb-3 hover:mx-5 hover:scale-105 hover:shadow-lg"
+    class="col-span-1 overflow-hidden rounded-lg border border-lochmara pb-3 hover:mx-5 hover:scale-105 hover:shadow-lg"
     :href="`/vehicles/${vehicle.id}`"
   >
     <div>
@@ -11,7 +11,7 @@
         <h1 class="text-2xl font-semibold">{{ vehicle.brand }}</h1>
         <h2 class="text-xl">{{ vehicle.name }}</h2>
       </div>
-      <div class="text-lochmara text-2xl font-semibold">
+      <div class="text-2xl font-semibold text-lochmara">
         {{ vehicle.price }}€
       </div>
     </div>

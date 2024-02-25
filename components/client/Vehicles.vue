@@ -1,7 +1,7 @@
 <template>
   <div class="my-10 px-20">
     <div
-      class="my-5 flex items-center justify-between border-b border-gray-200"
+      class="my-5 flex items-center justify-between border-b border-lochmara"
     >
       <h1 class="text-3xl font-semibold">Recommanded For You</h1>
       <a

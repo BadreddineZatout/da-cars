@@ -1,6 +1,6 @@
 <template>
   <div class="my-10 px-20">
-    <h1 class="my-5 border-b border-gray-200 text-3xl font-semibold">
+    <h1 class="my-5 border-b border-lochmara text-3xl font-semibold">
       Services
     </h1>
     <div class="grid grid-cols-3 gap-5">
