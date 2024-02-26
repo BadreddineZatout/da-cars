@@ -11,16 +11,36 @@ datasource db {
 }
 
 model Brand {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
   parentId  Int?
-  parent    Brand?   @relation("ParentBrand", fields: [parentId], references: [id])
-  subBrands Brand[]  @relation("ParentBrand")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  parent    Brand?    @relation("ParentBrand", fields: [parentId], references: [id])
+  subBrands Brand[]   @relation("ParentBrand")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  vehicles  Vehicle[]
 }
 
 model Service {
   id   Int    @id @default(autoincrement())
   name String
+}
+
+model Vehicle {
+  id          Int            @id @default(autoincrement())
+  name        String
+  brandId     Int
+  price       Float
+  description String
+  address     String
+  brand       Brand          @relation(fields: [brandId], references: [id])
+  media       VehicleMedia[]
+}
+
+model VehicleMedia {
+  id        Int     @id @default(autoincrement())
+  name      String
+  path      String
+  vehicleId Int
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
 }
