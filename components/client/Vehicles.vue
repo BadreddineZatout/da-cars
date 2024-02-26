@@ -35,26 +35,5 @@
 </template>
 
 <script setup>
-const vehicles = ref([
-  {
-    id: 1,
-    brand: "BMW 520",
-    name: "d Touring Automatic",
-    image: "/images/bmw.jpg",
-    price: 11500,
-    description:
-      "Used vehicle, Single 03/2012, 210.000 km, 135 kW (184 HP), Diesel, Self-winding Machine 4./100km (komb.), 13 CO2/km (cooker)",
-    address: "35274 Kirchhain",
-  },
-  {
-    id: 2,
-    brand: "BMW 520",
-    name: "i limousine",
-    image: "/images/bmw.jpg",
-    price: 11500,
-    description:
-      "Used vehicle, Single 03/2012, 210.000 km, 135 kW (184 HP), Diesel, Self-winding Machine 4./100km (komb.), 13 CO2/km (cooker)",
-    address: "35274 Kirchhain",
-  },
-]);
+const props = defineProps(["vehicles"]);
 </script>

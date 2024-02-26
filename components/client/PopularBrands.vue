@@ -1,6 +1,6 @@
 <template>
   <div class="my-10 px-20">
-    <h1 class="border-lochmara my-5 border-b text-3xl font-semibold">
+    <h1 class="my-5 border-b border-lochmara text-3xl font-semibold">
       Popular car brands
     </h1>
     <div class="grid grid-cols-6 gap-y-5 p-5">
