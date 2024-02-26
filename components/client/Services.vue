@@ -16,30 +16,5 @@
 </template>
 
 <script setup>
-const services = ref([
-  {
-    id: 1,
-    name: "Auto An- & Verkauf",
-  },
-  {
-    id: 2,
-    name: "Alufelgen & Reifen",
-  },
-  {
-    id: 3,
-    name: "Profi KFZ-Pflege",
-  },
-  {
-    id: 4,
-    name: "Scheibentönung",
-  },
-  {
-    id: 5,
-    name: "Autoglasservice",
-  },
-  {
-    id: 6,
-    name: "Klimaservice",
-  },
-]);
+const props = defineProps(["services"]);
 </script>
