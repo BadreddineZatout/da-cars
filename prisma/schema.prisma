@@ -22,8 +22,18 @@ model Brand {
 }
 
 model Service {
-  id   Int    @id @default(autoincrement())
-  name String
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  items       Item[]
+}
+
+model Item {
+  id        Int     @id @default(autoincrement())
+  name      String
+  price     Float
+  serviceId Int
+  service   Service @relation(fields: [serviceId], references: [id])
 }
 
 model Vehicle {
