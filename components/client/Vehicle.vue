@@ -6,7 +6,7 @@
     <div>
       <img :src="vehicle.media[0]?.path" alt="" />
     </div>
-    <div class="items-centermt-5 mt-5 flex justify-between px-5">
+    <div class="mt-5 flex items-center justify-between px-5">
       <div>
         <h1 class="text-2xl font-semibold">{{ vehicle.brand.name }}</h1>
         <h2 class="text-xl">{{ vehicle.name }}</h2>
