@@ -26,6 +26,7 @@ export default defineEventHandler(async (event) => {
     include: {
       media: true,
       brand: true,
+      features: true,
     },
   });
 });

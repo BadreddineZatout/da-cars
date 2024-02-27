@@ -37,14 +37,41 @@ model Item {
 }
 
 model Vehicle {
-  id          Int            @id @default(autoincrement())
+  id          Int              @id @default(autoincrement())
   name        String
   brandId     Int
   price       Float
   description String
+  phone       String?
   address     String
-  brand       Brand          @relation(fields: [brandId], references: [id])
+  isPremium   Boolean          @default(false)
+  brand       Brand            @relation(fields: [brandId], references: [id])
   media       VehicleMedia[]
+  features    Feature[]
+  tags        TagsOnVehicles[]
+}
+
+model Feature {
+  id        Int     @id @default(autoincrement())
+  name      String
+  vehicleId Int
+  Vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+}
+
+model Tag {
+  id       Int              @id @default(autoincrement())
+  name     String
+  vehicles TagsOnVehicles[]
+}
+
+model TagsOnVehicles {
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicleId Int
+  tag       Tag     @relation(fields: [tagId], references: [id])
+  tagId     Int
+  value     String
+
+  @@id([vehicleId, tagId])
 }
 
 model VehicleMedia {
