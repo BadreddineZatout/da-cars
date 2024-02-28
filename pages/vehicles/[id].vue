@@ -4,9 +4,15 @@
       <div>
         <Carousel :media="vehicle.media" />
       </div>
-      <VehicleDescription :description="vehicle.description" />
-      <VehicleTags :tags="vehicle.tags" />
-      <VehicleFeatures :features="vehicle.features" />
+      <VehicleDescription
+        v-if="vehicle.description"
+        :description="vehicle.description"
+      />
+      <VehicleTags v-if="vehicle.tags.length" :tags="vehicle.tags" />
+      <VehicleFeatures
+        v-if="vehicle.features.length"
+        :features="vehicle.features"
+      />
     </div>
     <div
       class="col-span-1 h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm"
