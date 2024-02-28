@@ -12,7 +12,7 @@
         >
           <p class="w-fit">{{ item.name }}</p>
           <p class="mx-5 grow border-t-2 border-dashed border-lochmara"></p>
-          <p class="w-fit font-semibold text-lochmara">{{ item.price }} £</p>
+          <p class="w-fit font-semibold text-lochmara">{{ item.price }} €</p>
         </li>
       </ul>
     </div>
