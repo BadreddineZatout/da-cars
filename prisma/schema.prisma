@@ -83,3 +83,8 @@ model VehicleMedia {
   vehicleId Int
   vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
 }
+
+model Carousel {
+  id   Int    @id @default(autoincrement())
+  path String
+}
