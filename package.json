@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
+    "flowbite": "^2.3.0",
     "nuxt": "^3.10.3",
     "prettier": "^3.2.5",
     "prisma": "^5.10.2",
