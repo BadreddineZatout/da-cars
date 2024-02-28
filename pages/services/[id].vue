@@ -2,7 +2,7 @@
   <div class="w-full px-32 py-20">
     <h1 class="text-3xl font-bold">{{ service.name }}</h1>
     <p class="mt-5 indent-5">{{ service.description }}</p>
-    <div class="mt-10">
+    <div v-if="service.items.length" class="mt-10">
       <h2 class="text-2xl font-semibold">Prices</h2>
       <ul class="list-disc px-20 text-xl">
         <li
