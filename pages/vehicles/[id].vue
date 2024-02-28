@@ -5,6 +5,7 @@
         <Carousel :media="vehicle.media" />
       </div>
       <VehicleDescription :description="vehicle.description" />
+      <VehicleTags :tags="vehicle.tags" />
     </div>
     <div
       class="col-span-1 min-h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm"
