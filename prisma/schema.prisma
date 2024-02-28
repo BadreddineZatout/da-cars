@@ -45,6 +45,8 @@ model Vehicle {
   phone       String?
   address     String
   isPremium   Boolean          @default(false)
+  rating      Int              @default(0)
+  owner       String           @default("Anonymous Owner")
   brand       Brand            @relation(fields: [brandId], references: [id])
   media       VehicleMedia[]
   features    Feature[]
