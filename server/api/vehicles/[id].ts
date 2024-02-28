@@ -20,7 +20,6 @@ export default defineEventHandler(async (event) => {
       tags: {
         include: {
           tag: true,
-          ya,
         },
       },
     },

@@ -71,20 +71,18 @@
         </div>
         <div>
           <p class="text-xl font-semibold">{{ vehicle.brand.name }}</p>
-          <p class="text-xl font-bold text-lochmara">{{ vehicle.price }} £</p>
+          <p class="text-xl font-bold text-lochmara">{{ vehicle.price }} €</p>
         </div>
       </div>
     </div>
   </div>
   <div class="w-full border-b border-lochmara pb-5 text-right">
-    <button
-      class="mr-5 rounded-lg bg-lochmara px-5 py-2 text-white hover:shadow-md"
+    <a
+      :href="`/vehicles/${vehicle.id}`"
+      class="rounded-lg border border-lochmara px-6 py-3 hover:bg-lochmara hover:text-white hover:shadow-md"
     >
-      <a :href="`/vehicles/${vehicle.id}/reserve`">Reserve</a>
-    </button>
-    <button class="rounded-lg border border-lochmara px-5 py-2 hover:shadow-md">
-      <a :href="`/vehicles/${vehicle.id}`">Details</a>
-    </button>
+      Details
+    </a>
   </div>
 </template>
 
