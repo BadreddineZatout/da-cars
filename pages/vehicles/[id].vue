@@ -1,10 +1,13 @@
 <template>
   <div class="my-10 grid grid-cols-3 gap-5 px-60">
     <div class="col-span-2">
-      <Carousel :media="vehicle.media" />
+      <div>
+        <Carousel :media="vehicle.media" />
+      </div>
+      <VehicleDescription :description="vehicle.description" />
     </div>
     <div
-      class="col-span-1 h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm"
+      class="col-span-1 min-h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm"
     >
       <div class="border-b border-lochmara pb-5">
         <h1 class="text-2xl font-bold">{{ vehicle.brand.name }}</h1>

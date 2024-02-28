@@ -39,7 +39,7 @@
         class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
       >
         <svg
-          class="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800"
+          class="h-4 w-4 text-white dark:text-gray-800 rtl:rotate-180"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -65,7 +65,7 @@
         class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70"
       >
         <svg
-          class="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800"
+          class="h-4 w-4 text-white dark:text-gray-800 rtl:rotate-180"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
