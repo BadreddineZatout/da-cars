@@ -6,9 +6,10 @@
       </div>
       <VehicleDescription :description="vehicle.description" />
       <VehicleTags :tags="vehicle.tags" />
+      <VehicleFeatures :features="vehicle.features" />
     </div>
     <div
-      class="col-span-1 min-h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm"
+      class="col-span-1 h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm"
     >
       <div class="border-b border-lochmara pb-5">
         <h1 class="text-2xl font-bold">{{ vehicle.brand.name }}</h1>

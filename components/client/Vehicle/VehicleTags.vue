@@ -18,5 +18,4 @@
 
 <script setup>
 const props = defineProps(["tags"]);
-console.log(props.tags);
 </script>
