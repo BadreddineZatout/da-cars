@@ -1,3 +1,4 @@
+import { Search } from "./../../../.nuxt/components.d";
 import prisma from "~/prisma";
 import { z } from "zod";
 
@@ -5,6 +6,7 @@ const querySchema = z.object({
   take: z.coerce.number().default(20),
   skip: z.coerce.number().default(0),
   brand: z.coerce.number().optional(),
+  search: z.string().optional(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -17,6 +19,9 @@ export default defineEventHandler(async (event) => {
     take: query.take,
     where: {
       brandId: query.brand,
+      name: {
+        contains: query.search,
+      },
     },
     orderBy: [
       {

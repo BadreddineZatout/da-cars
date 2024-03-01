@@ -4,8 +4,11 @@
       <h1>Filters</h1>
     </div>
     <div class="w-2/3">
-      <h1 class="text-2xl font-bold">{{ vehicles.length }} Vehicles</h1>
-      <div class="mt-5">
+      <div class="mb-5 flex w-full justify-end">
+        <Search @search="handleSearch" @clear-search="handleClearSearch" />
+      </div>
+      <h1 class="text-2xl font-bold">{{ vehicles.length ?? 0 }} Vehicles</h1>
+      <div v-if="vehicles.length" class="mt-5">
         <VehicleCard
           v-for="vehicle in vehicles"
           :key="vehicle.id"
@@ -21,4 +24,24 @@ const route = useRoute();
 const { data: vehicles } = await useFetch("/api/vehicles", {
   query: route.query,
 });
+
+const handleSearch = async (value) => {
+  let data = await $fetch("/api/vehicles", {
+    query: {
+      ...route.query,
+      search: value,
+    },
+  });
+  vehicles.value = data;
+};
+
+const handleClearSearch = async (value) => {
+  let data = await $fetch("/api/vehicles", {
+    query: {
+      ...route.query,
+      search: null,
+    },
+  });
+  vehicles.value = data;
+};
 </script>
