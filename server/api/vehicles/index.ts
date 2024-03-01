@@ -1,4 +1,3 @@
-import { Search } from "./../../../.nuxt/components.d";
 import prisma from "~/prisma";
 import { z } from "zod";
 

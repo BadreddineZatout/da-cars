@@ -1,7 +1,7 @@
 <template>
   <div class="my-10 flex gap-x-5 px-40">
-    <div class="w-1/3 rounded-lg border border-lochmara">
-      <h1>Filters</h1>
+    <div class="h-fit w-1/3 rounded-lg border border-lochmara">
+      <Filters :brands="brands" />
     </div>
     <div class="w-2/3">
       <div class="mb-5 flex w-full justify-end">
@@ -24,6 +24,8 @@ const route = useRoute();
 const { data: vehicles } = await useFetch("/api/vehicles", {
   query: route.query,
 });
+
+const { data: brands } = useFetch("/api/brands/sub");
 
 const handleSearch = async (value) => {
   let data = await $fetch("/api/vehicles", {
