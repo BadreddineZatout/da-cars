@@ -17,5 +17,8 @@
 </template>
 
 <script setup>
-const { data: vehicles } = await useFetch("/api/vehicles");
+const route = useRoute();
+const { data: vehicles } = await useFetch("/api/vehicles", {
+  query: route.query,
+});
 </script>

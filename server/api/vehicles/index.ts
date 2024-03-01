@@ -4,20 +4,20 @@ import { z } from "zod";
 const querySchema = z.object({
   take: z.coerce.number().default(20),
   skip: z.coerce.number().default(0),
+  brand: z.coerce.number().optional(),
 });
 
 export default defineEventHandler(async (event) => {
-  const result = await getValidatedQuery(event, (params) =>
-    querySchema.safeParse(params),
+  const query = await getValidatedQuery(event, (params) =>
+    querySchema.parse(params),
   );
-
-  if (!result.success) throw result.error.issues;
-
-  const query = result.data;
 
   return await prisma.vehicle.findMany({
     skip: query.skip * query.take,
     take: query.take,
+    where: {
+      brandId: query.brand,
+    },
     orderBy: [
       {
         id: "desc",
