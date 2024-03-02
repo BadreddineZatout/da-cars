@@ -25,9 +25,12 @@ const querySchema = z
   );
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, (params) =>
-    querySchema.parse(params),
+  const result = await getValidatedQuery(event, (params) =>
+    querySchema.safeParse(params),
   );
+
+  if (!result.success) return { errors: result.error.issues };
+  const query = result.data;
   return await prisma.vehicle.findMany({
     skip: query.skip * query.take,
     take: query.take,

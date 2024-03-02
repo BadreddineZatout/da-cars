@@ -31,6 +31,13 @@
         :max="5"
       />
       <Toggle @toggle="handleToggle" class="mt-5" label="Premium" />
+      <ul
+        v-if="errors.length"
+        class="mt-5 list-disc px-5 font-semibold text-red-500"
+      >
+        <li v-for="error in errors" :key="error.code">{{ error.message }}</li>
+      </ul>
+
       <div class="mt-10 flex items-center justify-around font-medium">
         <button
           class="w-1/3 rounded-lg border border-lochmara px-5 py-2 text-lochmara hover:bg-lochmara hover:text-white"
@@ -50,7 +57,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["brands"]);
+const props = defineProps(["brands", "errors"]);
 const emit = defineEmits(["applyFilters", "clearFilters"]);
 
 const filters = reactive({

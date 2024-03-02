@@ -5,6 +5,7 @@
         @apply-filters="handleFilter"
         @clear-filters="handleClearFilter"
         :brands="brands"
+        :errors="errors"
       />
     </div>
     <div class="w-2/3">
@@ -25,6 +26,7 @@
 
 <script setup>
 const route = useRoute();
+const errors = ref([]);
 const { data: vehicles } = await useFetch("/api/vehicles", {
   query: route.query,
 });
@@ -81,13 +83,20 @@ const handleFilter = async (filters) => {
       isPremium: filters.isPremium ? 1 : 0,
     },
   });
-  vehicles.value = await $fetch("/api/vehicles", {
+  const response = await $fetch("/api/vehicles", {
     query: {
       search: route.query.search,
       ...refineFilters(filters),
       isPremium: filters.isPremium ? 1 : 0,
     },
   });
+  console.log(response);
+  if (response.errors) {
+    errors.value = response.errors;
+  } else {
+    errors.value = [];
+    vehicles.value = response;
+  }
 };
 
 const handleClearFilter = async () => {
@@ -98,5 +107,6 @@ const handleClearFilter = async () => {
   vehicles.value = await $fetch("/api/vehicles", {
     query: route.query.search ? { search: route.query.search } : {},
   });
+  errors.value = [];
 };
 </script>
