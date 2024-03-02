@@ -28,22 +28,34 @@ const { data: vehicles } = await useFetch("/api/vehicles", {
 const { data: brands } = useFetch("/api/brands/sub");
 
 const handleSearch = async (value) => {
-  let data = await $fetch("/api/vehicles", {
+  await navigateTo({
+    path: "/vehicles",
     query: {
       ...route.query,
       search: value,
     },
   });
-  vehicles.value = data;
+  vehicles.value = await $fetch("/api/vehicles", {
+    query: {
+      ...route.query,
+      search: value,
+    },
+  });
 };
 
 const handleClearSearch = async (value) => {
-  let data = await $fetch("/api/vehicles", {
+  await navigateTo({
+    path: "/vehicles",
     query: {
       ...route.query,
       search: null,
     },
   });
-  vehicles.value = data;
+  vehicles.value = await $fetch("/api/vehicles", {
+    query: {
+      ...route.query,
+      search: null,
+    },
+  });
 };
 </script>
