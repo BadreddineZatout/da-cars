@@ -1,7 +1,11 @@
 <template>
   <div class="my-10 flex gap-x-5 px-40">
     <div class="h-fit w-1/3 rounded-lg border border-lochmara">
-      <Filters @apply-filters="handleFilter" :brands="brands" />
+      <Filters
+        @apply-filters="handleFilter"
+        @clear-filters="handleClearFilter"
+        :brands="brands"
+      />
     </div>
     <div class="w-2/3">
       <div class="mb-5 flex w-full justify-end">
@@ -72,17 +76,27 @@ const handleFilter = async (filters) => {
   await navigateTo({
     path: "/vehicles",
     query: {
-      ...route.query,
+      search: route.query.search,
       ...refineFilters(filters),
-      isPremium: filters.isPremium,
+      isPremium: filters.isPremium ? 1 : 0,
     },
   });
   vehicles.value = await $fetch("/api/vehicles", {
     query: {
-      ...route.query,
+      search: route.query.search,
       ...refineFilters(filters),
       isPremium: filters.isPremium ? 1 : 0,
     },
+  });
+};
+
+const handleClearFilter = async () => {
+  await navigateTo({
+    path: "/vehicles",
+    query: route.query.search ? { search: route.query.search } : {},
+  });
+  vehicles.value = await $fetch("/api/vehicles", {
+    query: route.query.search ? { search: route.query.search } : {},
   });
 };
 </script>
