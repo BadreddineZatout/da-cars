@@ -14,11 +14,18 @@
       :min="min"
       :max="max"
       v-model="value"
+      @change="handleInput"
     />
   </div>
 </template>
 
 <script setup>
 const props = defineProps(["label", "min", "max"]);
+const emit = defineEmits(["input"]);
 const value = ref(0);
+
+const handleInput = (e) => {
+  e.preventDefault();
+  emit("input", value);
+};
 </script>

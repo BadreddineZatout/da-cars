@@ -8,12 +8,29 @@
             return { name: brand.name, value: brand.id };
           })
         "
+        @select="handleSelect"
       />
 
-      <Number class="mt-5" label="Min Price" min="0" />
-      <Number class="mt-5" label="Max Price" min="0" />
-      <Number class="mt-5" label="Rating" min="0" max="5" />
-      <Toggle class="mt-5" label="Premium" />
+      <Number
+        @input="handleMinPriceInput"
+        class="mt-5"
+        label="Min Price"
+        min="0"
+      />
+      <Number
+        @input="handleMaxPriceInput"
+        class="mt-5"
+        label="Max Price"
+        min="0"
+      />
+      <Number
+        @input="handleRatingPriceInput"
+        class="mt-5"
+        label="Rating"
+        :min="0"
+        :max="5"
+      />
+      <Toggle @toggle="handleToggle" class="mt-5" label="Premium" />
       <div class="mt-10 flex items-center justify-around font-medium">
         <button
           class="w-1/3 rounded-lg border border-lochmara px-5 py-2 text-lochmara hover:bg-lochmara hover:text-white"
@@ -38,14 +55,39 @@ const emit = defineEmits(["applyFilters", "clearFilters"]);
 
 const filters = reactive({
   brand: null,
-  minPrice: 0,
-  maxPrice: Infinity,
-  rating: 0,
+  minPrice: null,
+  maxPrice: null,
+  rating: null,
   isPremium: null,
 });
+
+const handleSelect = (value) => {
+  filters.brand = value;
+};
+
+const handleMinPriceInput = (value) => {
+  filters.minPrice = value;
+};
+
+const handleMaxPriceInput = (value) => {
+  filters.maxPrice = value;
+};
+
+const handleRatingPriceInput = (value) => {
+  filters.rating = value;
+};
+
+const handleToggle = (value) => {
+  filters.isPremium = value;
+};
 
 const handleApplyFilters = (e) => {
   e.preventDefault();
   emit("applyFilters", filters);
+};
+
+const handleClearFilters = (e) => {
+  e.preventDefault();
+  emit("clearFilters", filters);
 };
 </script>
