@@ -10,11 +10,10 @@ const querySchema = z
     minPrice: z.coerce.number().positive().optional(),
     maxPrice: z.coerce.number().positive().optional(),
     rating: z.coerce.number().positive().lte(5).optional(),
-    isPremium: z.coerce.boolean().optional(),
+    isPremium: z.coerce.number().optional(),
   })
   .refine(
     (schema) => {
-      console.log(schema.isPremium);
       if (schema.minPrice && schema.maxPrice) {
         return schema.maxPrice >= schema.minPrice;
       }
@@ -32,18 +31,7 @@ export default defineEventHandler(async (event) => {
   return await prisma.vehicle.findMany({
     skip: query.skip * query.take,
     take: query.take,
-    where: {
-      brandId: query.brand,
-      name: {
-        contains: query.search,
-      },
-      price: {
-        gte: query.minPrice,
-        lte: query.maxPrice,
-      },
-      rating: query.rating,
-      isPremium: query.isPremium,
-    },
+    where: getWhereFilter(query),
     orderBy: [
       {
         id: "desc",
@@ -56,3 +44,20 @@ export default defineEventHandler(async (event) => {
     },
   });
 });
+
+const getWhereFilter = (query: any) => {
+  let where: any = {};
+  if (query.search)
+    where.name = {
+      contains: query.search,
+    };
+  if (query.brand) where.brandId = query.brand;
+  if (query.minPrice || query.maxPrice)
+    where.price = {
+      gte: query.minPrice,
+      lte: query.maxPrice,
+    };
+  if (query.rating) where.rating = query.rating;
+  if (query.isPremium) where.isPremium = query.isPremium == 1;
+  return where;
+};

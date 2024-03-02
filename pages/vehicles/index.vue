@@ -33,7 +33,6 @@ const refineFilters = (filters) => {
   if (filters.minPrice) refinedFilters.minPrice = filters.minPrice;
   if (filters.maxPrice) refinedFilters.maxPrice = filters.maxPrice;
   if (filters.rating) refinedFilters.rating = filters.rating;
-  if (filters.isPremium) refinedFilters.isPremium = filters.isPremium;
   return refinedFilters;
 };
 
@@ -75,12 +74,14 @@ const handleFilter = async (filters) => {
     query: {
       ...route.query,
       ...refineFilters(filters),
+      isPremium: filters.isPremium,
     },
   });
   vehicles.value = await $fetch("/api/vehicles", {
     query: {
       ...route.query,
       ...refineFilters(filters),
+      isPremium: filters.isPremium ? 1 : 0,
     },
   });
 };
