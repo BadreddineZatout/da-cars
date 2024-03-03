@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["label", "options", "model"]);
+const props = defineProps(["label", "options"]);
 const emit = defineEmits(["select"]);
 const option = ref("");
 
