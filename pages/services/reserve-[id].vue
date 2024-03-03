@@ -100,6 +100,10 @@
           </select>
         </div>
 
+        <div class="mt-5">
+          <VueDatePicker v-model="date" />
+        </div>
+
         <button
           type="submit"
           class="mt-5 w-full rounded-lg bg-lochmara px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
@@ -116,6 +120,24 @@
 </template>
 
 <script setup>
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+
 const route = useRoute();
 const { data: service } = await useFetch(`/api/services/${route.params.id}`);
+
+const date = ref();
+
+// Display only week with 15th date and add custom-class to all dates in that week
+const calendarFn = (weeks) => {
+  return weeks
+    .filter((week) => week.days.some((day) => day.text === 15))
+    .map((week) => ({
+      ...week,
+      days: week.days.map((day) => {
+        day.classData["custom-class"] = true;
+        return day;
+      }),
+    }));
+};
 </script>
