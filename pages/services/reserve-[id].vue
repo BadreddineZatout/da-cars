@@ -15,6 +15,7 @@
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="John"
             required
+            v-model="reservation.first_name"
           />
         </div>
         <div class="mt-5">
@@ -29,6 +30,7 @@
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="Doe"
             required
+            v-model="reservation.last_name"
           />
         </div>
         <div class="mt-5">
@@ -60,6 +62,7 @@
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               placeholder="123-456-7890"
               required
+              v-model="reservation.phone_number"
             />
           </div>
         </div>
@@ -75,7 +78,7 @@
             id="email"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             placeholder="john.doe@company.com"
-            required
+            v-model="reservation.email"
           />
         </div>
 
@@ -88,6 +91,7 @@
           <select
             id="items"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            v-model="reservation.itemId"
           >
             <option selected>Choose an Option</option>
             <option
@@ -101,12 +105,29 @@
         </div>
 
         <div class="mt-5">
-          <VueDatePicker v-model="date" />
+          <label
+            for="email"
+            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+            >Appointment Date</label
+          >
+          <VueDatePicker
+            v-model="reservation.date"
+            :enable-time-picker="false"
+            :auto-apply="true"
+          />
         </div>
+
+        <ul
+          v-if="errors.length"
+          class="mt-5 list-disc px-5 font-semibold text-red-500"
+        >
+          <li v-for="error in errors" :key="error.code">{{ error.message }}</li>
+        </ul>
 
         <button
           type="submit"
           class="mt-5 w-full rounded-lg bg-lochmara px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
+          @click="handleSubmit"
         >
           Reserve
         </button>
@@ -126,18 +147,30 @@ import "@vuepic/vue-datepicker/dist/main.css";
 const route = useRoute();
 const { data: service } = await useFetch(`/api/services/${route.params.id}`);
 
-const date = ref();
+const reservation = reactive({
+  first_name: "",
+  last_name: "",
+  phone_number: "",
+  email: "",
+  serviceId: route.params.id,
+  itemId: null,
+  date: "",
+});
 
-// Display only week with 15th date and add custom-class to all dates in that week
-const calendarFn = (weeks) => {
-  return weeks
-    .filter((week) => week.days.some((day) => day.text === 15))
-    .map((week) => ({
-      ...week,
-      days: week.days.map((day) => {
-        day.classData["custom-class"] = true;
-        return day;
-      }),
-    }));
+const errors = ref([]);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const response = await $fetch("/api/services/reserve", {
+    method: "POST",
+    body: reservation,
+  });
+
+  if (response.errors) {
+    errors.value = response.errors;
+    return;
+  }
+  errors.value = [];
+  return navigateTo("/services/reserved");
 };
 </script>

@@ -90,7 +90,6 @@ const handleFilter = async (filters) => {
       isPremium: filters.isPremium ? 1 : 0,
     },
   });
-  console.log(response);
   if (response.errors) {
     errors.value = response.errors;
   } else {
