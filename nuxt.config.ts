@@ -15,6 +15,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-
-  modules: ["@nuxt/image"],
+  build: {
+    transpile: ["@vuepic/vue-datepicker"],
+  },
 });
