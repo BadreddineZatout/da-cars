@@ -15,6 +15,9 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+
+  modules: ["@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
+
   build: {
     transpile: ["@vuepic/vue-datepicker"],
   },
