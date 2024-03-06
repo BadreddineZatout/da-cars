@@ -23,12 +23,6 @@
           v-model="email"
           required
         />
-        <p
-          v-if="errorMessages?.email"
-          class="ml-3 mt-2 text-sm font-bold text-red-500"
-        >
-          {{ errorMessages.email }}
-        </p>
       </div>
       <div class="mb-5 grid">
         <label class="font-semibold" for="password">Password</label>
@@ -41,13 +35,15 @@
           minlength="8"
           required
         />
-        <p
-          v-if="errorMessages?.password"
-          class="ml-3 mt-2 text-sm font-bold text-red-500"
-        >
-          {{ errorMessages.password }}
-        </p>
       </div>
+      <ul
+        v-if="errorMessages.length"
+        class="mt-5 list-disc px-5 font-semibold text-red-500"
+      >
+        <li v-for="error in errorMessages" :key="error.code">
+          {{ error.message }}
+        </li>
+      </ul>
       <div class="text-center">
         <button
           class="mt-10 rounded-md border border-gray-500 px-10 py-2 hover:bg-lochmara hover:text-white"
@@ -88,6 +84,7 @@ const handleSubmit = async (event) => {
       password: password.value,
     },
   });
+  console.log(errors);
   if (!errors) {
     store.isLogged = true;
     store.user = user;
