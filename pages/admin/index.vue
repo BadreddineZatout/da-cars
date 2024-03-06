@@ -16,6 +16,7 @@
 <script setup>
 definePageMeta({
   layout: "admin",
+  middleware: ["auth"],
 });
 const { reservation, service, vehicle } = await $fetch("/api/admin");
 </script>

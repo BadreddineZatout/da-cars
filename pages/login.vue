@@ -72,7 +72,7 @@ let errorMessages = ref({});
 const store = useStore();
 
 onBeforeMount(() => {
-  if (store.isLogged) window.location.href = "/";
+  if (store.isLogged) window.location.href = "/admin";
 });
 
 const handleSubmit = async (event) => {
