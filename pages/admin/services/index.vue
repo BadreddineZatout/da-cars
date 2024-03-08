@@ -5,9 +5,9 @@
       <div
         class="flex border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model="q" placeholder="Filter service..." />
+        <UInput v-model="search" placeholder="Filter service..." />
       </div>
-      <UTable :columns="columns" :rows="filteredRows" :loading="pending" />
+      <UTable :columns="columns" :rows="filteredRows" />
     </div>
   </div>
 </template>
@@ -19,7 +19,6 @@ definePageMeta({
 });
 
 const services = await $fetch("/api/services");
-console.log(services);
 
 const columns = [
   {
@@ -32,17 +31,14 @@ const columns = [
   },
 ];
 
-const q = ref("");
+const search = ref("");
 
 const filteredRows = computed(() => {
-  if (!q.value) {
+  if (!search.value) {
     return services;
   }
-
-  return services.filter((person) => {
-    return Object.values(person).some((value) => {
-      return String(value).toLowerCase().includes(q.value.toLowerCase());
-    });
+  return services.filter((service) => {
+    return service.name.toLowerCase().includes(search.value.toLowerCase());
   });
 });
 </script>
