@@ -5,9 +5,9 @@
       <div
         class="flex border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model="search" placeholder="Filter service..." />
+        <UInput v-model.lazy="search" placeholder="Filter service..." />
       </div>
-      <UTable :columns="columns" :rows="filteredRows" />
+      <UTable :columns="columns" :rows="services" />
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const services = await $fetch("/api/services");
+const services = ref(await $fetch("/api/services"));
 
 const columns = [
   {
@@ -33,12 +33,15 @@ const columns = [
 
 const search = ref("");
 
-const filteredRows = computed(() => {
+watch(search, async () => {
   if (!search.value) {
-    return services;
+    services.value = await $fetch("/api/services");
+    return;
   }
-  return services.filter((service) => {
-    return service.name.toLowerCase().includes(search.value.toLowerCase());
+  services.value = await $fetch("/api/services", {
+    query: {
+      search: search.value,
+    },
   });
 });
 </script>
