@@ -22,6 +22,9 @@
             />
           </div>
         </template>
+        <template #brand-data="{ row }">
+          <span>{{ row.brand.name }}</span>
+        </template>
         <template #isPremium-data="{ row }">
           <svg
             v-if="row.isPremium"
@@ -108,6 +111,10 @@ const columns = [
   {
     key: "name",
     label: "Name",
+  },
+  {
+    key: "brand",
+    label: "Brand",
   },
   {
     key: "price",

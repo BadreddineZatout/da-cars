@@ -22,5 +22,8 @@ export default defineEventHandler(async (event) => {
         contains: query.search,
       },
     },
+    include: {
+      brand: true,
+    },
   });
 });
