@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 export default defineEventHandler(async () => {
   const user = await prisma.user.findFirst({
     where: {
-      email: "admin@test.com",
+      email: "admin@admin.com",
     },
   });
 
@@ -14,7 +14,7 @@ export default defineEventHandler(async () => {
   return await prisma.user.create({
     data: {
       name: "Admin",
-      email: "admin@test.com",
+      email: "admin@admin.com",
       password: bcrypt.hashSync("12345678", 8),
     },
   });
