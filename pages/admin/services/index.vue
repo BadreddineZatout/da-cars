@@ -16,7 +16,10 @@
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
             <span class="text-sm italic">Empty!</span>
-            <UButton label="Add service" />
+            <UButton
+              class="bg-lochmara hover:bg-blue-700"
+              label="Add service"
+            />
           </div>
         </template>
         <template #actions-data="{ row }">
