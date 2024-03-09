@@ -126,9 +126,21 @@ const confirmDelete = (id) => {
   toDelete.value = id;
 };
 
-const handleDelete = (id) => {
-  console.log(id);
-  isOpen.value = false;
-  toDelete.value = null;
+const handleDelete = async (id) => {
+  const response = await $fetch(`/api/services/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.errors) {
+    isOpen.value = false;
+    toDelete.value = null;
+    services.value = await $fetch("/api/services", {
+      query: {
+        search: search.value,
+        skip: skip.value - 1,
+        take: take,
+      },
+    });
+  }
 };
 </script>
