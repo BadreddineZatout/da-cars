@@ -76,12 +76,14 @@ const items = (row) => [
     {
       label: "View",
       icon: "i-heroicons-eye-20-solid",
-      click: () => navigateTo(`/admin/prices/${row.id}`),
+      click: () =>
+        navigateTo(`/admin/services/${props.service}/prices/${row.id}`),
     },
     {
       label: "Edit",
       icon: "i-heroicons-pencil-square-20-solid",
-      click: () => navigateTo(`/admin/prices/${row.id}/edit`),
+      click: () =>
+        navigateTo(`/admin/services/${props.service}/prices/${row.id}/edit`),
     },
     {
       label: "Delete",
