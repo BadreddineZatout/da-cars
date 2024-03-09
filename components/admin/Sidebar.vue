@@ -1,9 +1,9 @@
 <template>
-  <aside class="h-full w-64 bg-black">
+  <aside class="sticky top-0 h-full min-h-screen w-64 bg-black">
     <div class="flex items-center justify-center pt-5">
       <img class="h-20" src="/logo.jpg" alt="logo" />
     </div>
-    <div class="h-screen px-3 text-white dark:bg-gray-800">
+    <div class="h-full px-3 text-white dark:bg-gray-800">
       <ul class="space-y-5 font-medium">
         <li>
           <NuxtLink
