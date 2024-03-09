@@ -169,6 +169,7 @@
         <li>
           <button
             class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            @click="handleLogout"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
@@ -194,4 +195,12 @@
   </aside>
 </template>
 
-<script setup></script>
+<script setup>
+const store = useStore();
+const handleLogout = () => {
+  store.$reset();
+  return navigateTo("/", {
+    replace: true,
+  });
+};
+</script>

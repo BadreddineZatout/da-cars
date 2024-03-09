@@ -84,7 +84,6 @@ const handleSubmit = async (event) => {
       password: password.value,
     },
   });
-  console.log(errors);
   if (!errors) {
     store.isLogged = true;
     store.user = user;
