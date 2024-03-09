@@ -8,7 +8,8 @@
         <li>
           <NuxtLink
             to="/admin"
-            class="group mt-10 flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group mt-10 flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            :class="{ 'text-lochmara': $route.path == '/admin' }"
           >
             <svg
               class="group-hover: h-5 w-5 transition duration-75"
@@ -30,7 +31,10 @@
         <li>
           <NuxtLink
             to="/admin/reservations"
-            class="group flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            :class="{
+              'text-lochmara': $route.path.includes('/admin/reservations'),
+            }"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
@@ -54,7 +58,10 @@
         <li>
           <NuxtLink
             to="/admin/vehicles"
-            class="group flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            :class="{
+              'text-lochmara': $route.path.includes('/admin/vehicles'),
+            }"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
@@ -78,7 +85,10 @@
         <li>
           <NuxtLink
             to="/admin/services"
-            class="group flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            :class="{
+              'text-lochmara': $route.path.includes('/admin/services'),
+            }"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
@@ -102,7 +112,8 @@
         <li>
           <NuxtLink
             href="/admin/users"
-            class="group flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            :class="{ 'text-lochmara': $route.path.includes('/admin/users') }"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
@@ -126,7 +137,10 @@
         <li>
           <NuxtLink
             to="/admin/settings"
-            class="group flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
+            :class="{
+              'text-lochmara': $route.path.includes('/admin/settings'),
+            }"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
@@ -154,7 +168,7 @@
         </li>
         <li>
           <button
-            class="group flex items-center rounded-lg p-2 hover:font-semibold"
+            class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
           >
             <svg
               class="h-5 w-5 flex-shrink-0"
