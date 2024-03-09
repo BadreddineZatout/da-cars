@@ -19,6 +19,7 @@
         <p class="mt-3 indent-5 text-xl">{{ service.description }}</p>
       </UCard>
     </div>
+    <ServiceItems :service="service.id" />
   </div>
 </template>
 
