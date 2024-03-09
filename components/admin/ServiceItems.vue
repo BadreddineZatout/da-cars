@@ -117,7 +117,7 @@ watch([search, skip], async () => {
 });
 
 const handleCreate = () => {
-  return navigateTo("/admin/prices/create");
+  return navigateTo(`/admin/services/${props.service}/prices/create`);
 };
 
 const confirmDelete = (id) => {
