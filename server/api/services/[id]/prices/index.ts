@@ -13,11 +13,19 @@ export default defineEventHandler(async (event) => {
 
   if (!result.success) return { errors: result.error.issues };
   const query = result.data;
+  const id = getRouterParam(event, "id");
+  if (!id) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "ID is required",
+    });
+  }
 
-  return await prisma.service.findMany({
+  return await prisma.item.findMany({
     skip: query.skip * query.take,
     take: query.take,
     where: {
+      serviceId: parseInt(id),
       name: {
         contains: query.search,
       },
