@@ -95,6 +95,19 @@
         <p class="mt-3 indent-5 text-xl">{{ vehicle.description }}</p>
       </UCard>
     </div>
+
+    <div class="mt-10">
+      <h1 class="mb-10 text-3xl font-bold">Media</h1>
+      <UCarousel
+        v-slot="{ item }"
+        :items="vehicle.media"
+        :ui="{ item: 'basis-full' }"
+        class="w-1/2 overflow-hidden rounded-lg"
+        arrows
+      >
+        <img :src="item.path" class="w-full" draggable="false" />
+      </UCarousel>
+    </div>
   </div>
 </template>
 

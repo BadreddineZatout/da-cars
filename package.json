@@ -17,6 +17,7 @@
     "@vuepic/vue-datepicker": "^8.2.0",
     "bcryptjs": "^2.4.3",
     "flowbite": "^2.3.0",
+    "h3-formidable": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.10.3",
     "pinia": "^2.1.7",

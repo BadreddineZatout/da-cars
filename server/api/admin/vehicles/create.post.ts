@@ -1,6 +1,7 @@
 import prisma from "~/prisma";
 import { z } from "zod";
-
+import { readFiles } from "h3-formidable";
+import { firstValues, readBooleans } from "h3-formidable/helpers";
 const bodySchema = z.object({
   name: z.coerce.string(),
   description: z.coerce.string(),
@@ -14,12 +15,15 @@ const bodySchema = z.object({
 });
 
 export default defineEventHandler(async (event) => {
-  const result = await readValidatedBody(event, (params) =>
-    bodySchema.safeParse(params),
-  );
+  const { fields, files, form } = await readFiles(event);
+
+  const fieldsSingle = firstValues(form, fields, []);
+  const fieldsWithBooleans = readBooleans(fieldsSingle, ["isPremium"]);
+  const result = bodySchema.safeParse(fieldsWithBooleans);
 
   if (!result.success) return { errors: result.error.issues };
   const data = result.data;
+
   return await prisma.vehicle.create({
     data: {
       name: data.name,

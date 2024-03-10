@@ -63,7 +63,15 @@
             <UToggle v-model="vehicle.isPremium" />
           </UFormGroup>
         </div>
-
+        <UFormGroup class="w-1/2" label="Media" name="media">
+          <input
+            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
+            id="media"
+            type="file"
+            multiple
+            @change="handleMedia"
+          />
+        </UFormGroup>
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
           Submit
         </UButton>
@@ -105,10 +113,29 @@ const vehicle = reactive({
 
 const brands = await $fetch("/api/brands/sub");
 
+const media = ref(null);
+const body = new FormData();
+
+const handleMedia = (e) => {
+  Array.from(e.target.files).forEach((file) => {
+    body.append("files[]", file);
+  });
+};
+
 const onSubmit = async () => {
+  body.append("name", vehicle.name);
+  body.append("description", vehicle.description);
+  body.append("brand", vehicle.brand);
+  body.append("price", vehicle.price);
+  body.append("phone", vehicle.phone);
+  body.append("address", vehicle.address);
+  body.append("owner", vehicle.owner);
+  body.append("rating", vehicle.rating);
+  body.append("isPremium", vehicle.isPremium);
+  console.log(body);
   const response = await $fetch("/api/admin/vehicles/create", {
     method: "POST",
-    body: vehicle,
+    body: body,
   });
 
   if (!response.errors) {
