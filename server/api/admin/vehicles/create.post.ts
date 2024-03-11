@@ -2,6 +2,7 @@ import prisma from "~/prisma";
 import { z } from "zod";
 import { readFiles } from "h3-formidable";
 import { firstValues, readBooleans } from "h3-formidable/helpers";
+
 const bodySchema = z.object({
   name: z.coerce.string(),
   description: z.coerce.string(),
@@ -14,8 +15,24 @@ const bodySchema = z.object({
   isPremium: z.coerce.boolean().default(false),
 });
 
+type Media = {
+  name: string;
+  path: string;
+};
 export default defineEventHandler(async (event) => {
-  const { fields, files, form } = await readFiles(event);
+  const media: Media[] = [];
+  const { fields, files, form } = await readFiles(event, {
+    uploadDir: "public/images",
+    createDirsFromUploads: true,
+    filename(name, ext, part, form) {
+      let filename = part.originalFilename ?? "image";
+      media.push({
+        name: filename,
+        path: "/images/" + filename,
+      });
+      return filename;
+    },
+  });
 
   const fieldsSingle = firstValues(form, fields, []);
   const fieldsWithBooleans = readBooleans(fieldsSingle, ["isPremium"]);
@@ -35,6 +52,12 @@ export default defineEventHandler(async (event) => {
       isPremium: data.isPremium,
       rating: data.rating,
       owner: data.owner,
+      media: {
+        create: media,
+      },
+    },
+    include: {
+      media: true,
     },
   });
 });
