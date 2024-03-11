@@ -1,5 +1,7 @@
 import prisma from "~/prisma";
 import { z } from "zod";
+import { readFiles } from "h3-formidable";
+import { firstValues, readBooleans } from "h3-formidable/helpers";
 
 const bodySchema = z.object({
   name: z.coerce.string(),
@@ -10,25 +12,54 @@ const bodySchema = z.object({
   address: z.coerce.string(),
   owner: z.coerce.string(),
   rating: z.coerce.number(),
-  isPremium: z.coerce.boolean().default(false),
+  isPremium: z.coerce.boolean(),
 });
 
+type Media = {
+  name: string;
+  path: string;
+};
+
 export default defineEventHandler(async (event) => {
-  const result = await readValidatedBody(event, (params) =>
-    bodySchema.safeParse(params),
-  );
+  const media: Media[] = [];
+  const { fields, files, form } = await readFiles(event, {
+    uploadDir: "public/images",
+    createDirsFromUploads: true,
+    filename(name, ext, part, form) {
+      let filename = part.originalFilename ?? "image";
+      media.push({
+        name: filename,
+        path: "/images/" + filename,
+      });
+      return filename;
+    },
+  });
+  const fieldsSingle = firstValues(form, fields, []);
+  const fieldsWithBooleans = readBooleans(fieldsSingle, ["isPremium"]);
+  const result = bodySchema.safeParse(fieldsWithBooleans);
+
+  if (!result.success) return { errors: result.error.issues };
+  const data = result.data;
 
   const id = getRouterParam(event, "id");
-
   if (!id) {
     throw createError({
       statusCode: 400,
       statusMessage: "ID is required",
     });
   }
+  if (media.length) {
+    media.forEach(async (image) => {
+      await prisma.vehicleMedia.create({
+        data: {
+          name: image.name,
+          path: image.path,
+          vehicleId: parseInt(id),
+        },
+      });
+    });
+  }
 
-  if (!result.success) return { errors: result.error.issues };
-  const data = result.data;
   return await prisma.vehicle.update({
     where: {
       id: parseInt(id),

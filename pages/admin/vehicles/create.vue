@@ -113,16 +113,17 @@ const vehicle = reactive({
 
 const brands = await $fetch("/api/brands/sub");
 
-const media = ref(null);
 const body = new FormData();
 
 const handleMedia = (e) => {
+  body.delete("files[]");
   Array.from(e.target.files).forEach((file) => {
     body.append("files[]", file);
   });
 };
 
 const onSubmit = async () => {
+  clearBody(body);
   body.append("name", vehicle.name);
   body.append("description", vehicle.description);
   body.append("brand", vehicle.brand);
@@ -132,7 +133,6 @@ const onSubmit = async () => {
   body.append("owner", vehicle.owner);
   body.append("rating", vehicle.rating);
   body.append("isPremium", vehicle.isPremium);
-  console.log(body);
   const response = await $fetch("/api/admin/vehicles/create", {
     method: "POST",
     body: body,
@@ -141,5 +141,17 @@ const onSubmit = async () => {
   if (!response.errors) {
     return navigateTo("/admin/vehicles");
   }
+};
+
+const clearBody = () => {
+  body.delete("name");
+  body.delete("description");
+  body.delete("brandId");
+  body.delete("price");
+  body.delete("phone");
+  body.delete("address");
+  body.delete("owner");
+  body.delete("rating");
+  body.delete("isPremium");
 };
 </script>
