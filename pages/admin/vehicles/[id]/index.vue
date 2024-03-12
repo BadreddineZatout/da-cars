@@ -96,6 +96,8 @@
       </UCard>
     </div>
 
+    <Features :vehicle="vehicle.id" />
+
     <div class="mt-10">
       <h1 class="mb-10 text-3xl font-bold">Media</h1>
       <UCarousel
