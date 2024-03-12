@@ -39,7 +39,7 @@ const feature = reactive({
 
 const onSubmit = async () => {
   const response = await $fetch(
-    `/api/services/${route.params.id}/features/create`,
+    `/api/vehicles/${route.params.id}/features/create`,
     {
       method: "POST",
       body: feature,
@@ -47,7 +47,7 @@ const onSubmit = async () => {
   );
 
   if (!response.errors) {
-    return navigateTo(`/admin/services/${route.params.id}`);
+    return navigateTo(`/admin/vehicles/${route.params.id}`);
   }
 };
 </script>

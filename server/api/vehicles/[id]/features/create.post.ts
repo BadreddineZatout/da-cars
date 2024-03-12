@@ -3,7 +3,6 @@ import { z } from "zod";
 
 const bodySchema = z.object({
   name: z.coerce.string(),
-  price: z.coerce.number(),
 });
 
 export default defineEventHandler(async (event) => {
@@ -20,10 +19,10 @@ export default defineEventHandler(async (event) => {
 
   if (!result.success) return { errors: result.error.issues };
   const data = result.data;
-  return await prisma.item.create({
+  return await prisma.feature.create({
     data: {
       ...data,
-      serviceId: parseInt(id),
+      vehicleId: parseInt(id),
     },
   });
 });
