@@ -1,24 +1,24 @@
 <template>
   <div class="mt-10">
-    <h1 class="text-3xl font-bold">Prices</h1>
+    <h1 class="text-3xl font-bold">Features</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter service..." />
+        <UInput v-model.lazy="search" placeholder="Filter feature..." />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add service"
+          label="Add feature"
         />
       </div>
-      <UTable :columns="columns" :rows="prices">
+      <UTable :columns="columns" :rows="features">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
             <span class="text-sm italic">Empty!</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
-              label="Add service"
+              label="Add feature"
             />
           </div>
         </template>
@@ -35,12 +35,16 @@
       <div
         class="flex justify-end border-t border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UPagination v-model="skip" :page-count="take" :total="prices_count" />
+        <UPagination
+          v-model="skip"
+          :page-count="take"
+          :total="features_count"
+        />
       </div>
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModel
-        name="Item"
+        name="Feature"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -49,11 +53,11 @@
 </template>
 
 <script setup>
-const props = defineProps(["service"]);
+const props = defineProps(["vehicle"]);
 
-const prices = ref(await $fetch(`/api/services/${props.service}/prices`));
-const prices_count = await $fetch(
-  `/api/services/${props.service}/prices/count`,
+const features = ref(await $fetch(`/api/vehicles/${props.vehicle}/features`));
+const features_count = await $fetch(
+  `/api/vehicles/${props.vehicle}/features/count`,
 );
 
 const columns = [
@@ -66,10 +70,6 @@ const columns = [
     label: "Name",
   },
   {
-    key: "price",
-    label: "Price",
-  },
-  {
     key: "actions",
   },
 ];
@@ -80,13 +80,13 @@ const items = (row) => [
       label: "View",
       icon: "i-heroicons-eye-20-solid",
       click: () =>
-        navigateTo(`/admin/services/${props.service}/prices/${row.id}`),
+        navigateTo(`/admin/vehicles/${props.vehicle}/features/${row.id}`),
     },
     {
       label: "Edit",
       icon: "i-heroicons-pencil-square-20-solid",
       click: () =>
-        navigateTo(`/admin/services/${props.service}/prices/${row.id}/edit`),
+        navigateTo(`/admin/vehicles/${props.vehicle}/features/${row.id}/edit`),
     },
     {
       label: "Delete",
@@ -104,7 +104,7 @@ const toDelete = ref(null);
 
 watch([search, skip], async () => {
   if (!search.value) {
-    prices.value = await $fetch(`/api/services/${props.service}/prices`, {
+    features.value = await $fetch(`/api/vehicles/${props.vehicle}/features`, {
       query: {
         skip: skip.value - 1,
         take: take,
@@ -112,7 +112,7 @@ watch([search, skip], async () => {
     });
     return;
   }
-  prices.value = await $fetch(`/api/services/${props.service}/prices`, {
+  features.value = await $fetch(`/api/vehicles/${props.vehicle}/features`, {
     query: {
       search: search.value,
       skip: skip.value - 1,
@@ -122,7 +122,7 @@ watch([search, skip], async () => {
 });
 
 const handleCreate = () => {
-  return navigateTo(`/admin/services/${props.service}/prices/create`);
+  return navigateTo(`/admin/vehicles/${props.vehicle}/features/create`);
 };
 
 const confirmDelete = (id) => {
@@ -131,14 +131,14 @@ const confirmDelete = (id) => {
 };
 
 const handleDelete = async (id) => {
-  const response = await $fetch(`/api/prices/${id}`, {
+  const response = await $fetch(`/api/features/${id}`, {
     method: "DELETE",
   });
 
   if (!response.errors) {
     isOpen.value = false;
     toDelete.value = null;
-    prices.value = await $fetch(`/api/services/${props.service}/prices`, {
+    features.value = await $fetch(`/api/vehicles/${props.vehicle}/features`, {
       query: {
         search: search.value,
         skip: skip.value - 1,

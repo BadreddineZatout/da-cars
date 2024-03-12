@@ -4,7 +4,7 @@
       <Select
         label="Brand"
         :options="
-          brands.map((brand) => {
+          brands?.map((brand) => {
             return { name: brand.name, value: brand.id };
           })
         "

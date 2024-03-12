@@ -1,26 +1,26 @@
 <template>
   <div class="mt-10">
-    <h1 class="text-3xl font-bold">Prices</h1>
+    <h1 class="text-3xl font-bold">Tags</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter service..." />
+        <UInput v-model="search" placeholder="Filter tag..." />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add service"
+          label="Add tag"
         />
       </div>
-      <UTable :columns="columns" :rows="prices">
+      <UTable :columns="columns" :rows="filteredRows">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
             <span class="text-sm italic">Empty!</span>
-            <UButton
-              class="bg-lochmara hover:bg-blue-700"
-              label="Add service"
-            />
+            <UButton class="bg-lochmara hover:bg-blue-700" label="Add tag" />
           </div>
+        </template>
+        <template #name-data="{ row }">
+          <span>{{ row.tag.name }}</span>
         </template>
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
@@ -35,12 +35,12 @@
       <div
         class="flex justify-end border-t border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UPagination v-model="skip" :page-count="take" :total="prices_count" />
+        <UPagination v-model="skip" :page-count="take" :total="tags.length" />
       </div>
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModel
-        name="Item"
+        name="Tag"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -49,16 +49,11 @@
 </template>
 
 <script setup>
-const props = defineProps(["service"]);
-
-const prices = ref(await $fetch(`/api/services/${props.service}/prices`));
-const prices_count = await $fetch(
-  `/api/services/${props.service}/prices/count`,
-);
+const props = defineProps(["vehicle", "tags"]);
 
 const columns = [
   {
-    key: "id",
+    key: "tagId",
     label: "ID",
   },
   {
@@ -66,8 +61,8 @@ const columns = [
     label: "Name",
   },
   {
-    key: "price",
-    label: "Price",
+    key: "value",
+    label: "Value",
   },
   {
     key: "actions",
@@ -80,18 +75,18 @@ const items = (row) => [
       label: "View",
       icon: "i-heroicons-eye-20-solid",
       click: () =>
-        navigateTo(`/admin/services/${props.service}/prices/${row.id}`),
+        navigateTo(`/admin/vehicles/${props.vehicle}/tags/${row.tagId}`),
     },
     {
       label: "Edit",
       icon: "i-heroicons-pencil-square-20-solid",
       click: () =>
-        navigateTo(`/admin/services/${props.service}/prices/${row.id}/edit`),
+        navigateTo(`/admin/vehicles/${props.vehicle}/tags/${row.tagId}/edit`),
     },
     {
       label: "Delete",
       icon: "i-heroicons-trash-20-solid",
-      click: () => confirmDelete(row.id),
+      click: () => confirmDelete(row.tagId),
     },
   ],
 ];
@@ -102,27 +97,22 @@ const take = 10;
 const isOpen = ref(false);
 const toDelete = ref(null);
 
-watch([search, skip], async () => {
+const tags = ref(props.tags);
+
+const filteredRows = computed(() => {
   if (!search.value) {
-    prices.value = await $fetch(`/api/services/${props.service}/prices`, {
-      query: {
-        skip: skip.value - 1,
-        take: take,
-      },
-    });
-    return;
+    return tags.value.slice((skip.value - 1) * take, skip.value * take);
   }
-  prices.value = await $fetch(`/api/services/${props.service}/prices`, {
-    query: {
-      search: search.value,
-      skip: skip.value - 1,
-      take: take,
-    },
-  });
+
+  return tags.value
+    .filter((item) => {
+      return item.tag.name.toLowerCase().includes(search.value.toLowerCase());
+    })
+    .slice((skip.value - 1) * take, skip.value * take);
 });
 
 const handleCreate = () => {
-  return navigateTo(`/admin/services/${props.service}/prices/create`);
+  return navigateTo(`/admin/vehicles/${props.vehicle}/tags/create`);
 };
 
 const confirmDelete = (id) => {
@@ -131,20 +121,14 @@ const confirmDelete = (id) => {
 };
 
 const handleDelete = async (id) => {
-  const response = await $fetch(`/api/prices/${id}`, {
+  const response = await $fetch(`/api/vehicles/${props.vehicle}/tags/${id}`, {
     method: "DELETE",
   });
 
   if (!response.errors) {
     isOpen.value = false;
     toDelete.value = null;
-    prices.value = await $fetch(`/api/services/${props.service}/prices`, {
-      query: {
-        search: search.value,
-        skip: skip.value - 1,
-        take: take,
-      },
-    });
+    tags.value = tags.value.filter((tag) => tag.tagId != id);
   }
 };
 </script>
