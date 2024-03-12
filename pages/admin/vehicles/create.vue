@@ -12,7 +12,6 @@
           <UFormGroup class="w-1/2" label="name" name="name">
             <UInput v-model="vehicle.name" />
           </UFormGroup>
-
           <UFormGroup class="w-1/2" label="brand" name="brand">
             <USelect
               placeholder="Select Brand..."
