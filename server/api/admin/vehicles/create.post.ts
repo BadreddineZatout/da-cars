@@ -37,7 +37,6 @@ export default defineEventHandler(async (event) => {
   const fieldsSingle = firstValues(form, fields, []);
   const fieldsWithBooleans = readBooleans(fieldsSingle, ["isPremium"]);
   const result = bodySchema.safeParse(fieldsWithBooleans);
-
   if (!result.success) return { errors: result.error.issues };
   const data = result.data;
 
@@ -49,7 +48,7 @@ export default defineEventHandler(async (event) => {
       price: data.price,
       phone: data.phone,
       address: data.address,
-      isPremium: data.isPremium,
+      isPremium: fieldsSingle.isPremium?.toString() == "true",
       rating: data.rating,
       owner: data.owner,
       media: {

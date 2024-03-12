@@ -140,14 +140,13 @@ const onSubmit = async () => {
   body.append("owner", vehicle.value.owner);
   body.append("rating", vehicle.value.rating);
   body.append("isPremium", vehicle.value.isPremium);
-  console.log(body);
   const response = await $fetch(`/api/admin/vehicles/${vehicle.value.id}`, {
     method: "PUT",
     body: body,
   });
 
   if (!response.errors) {
-    // return navigateTo("/admin/vehicles");
+    return navigateTo("/admin/vehicles");
   }
 };
 
