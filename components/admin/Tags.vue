@@ -86,7 +86,7 @@ const items = (row) => [
     {
       label: "Delete",
       icon: "i-heroicons-trash-20-solid",
-      click: () => confirmDelete(row.id),
+      click: () => confirmDelete(row.tagId),
     },
   ],
 ];
@@ -97,12 +97,14 @@ const take = 10;
 const isOpen = ref(false);
 const toDelete = ref(null);
 
+const tags = ref(props.tags);
+
 const filteredRows = computed(() => {
   if (!search.value) {
-    return props.tags.slice((skip.value - 1) * take, skip.value * take);
+    return tags.value.slice((skip.value - 1) * take, skip.value * take);
   }
 
-  return props.tags
+  return tags.value
     .filter((item) => {
       return item.tag.name.toLowerCase().includes(search.value.toLowerCase());
     })
@@ -119,20 +121,14 @@ const confirmDelete = (id) => {
 };
 
 const handleDelete = async (id) => {
-  const response = await $fetch(`/api/tags/${id}`, {
+  const response = await $fetch(`/api/vehicles/${props.vehicle}/tags/${id}`, {
     method: "DELETE",
   });
 
   if (!response.errors) {
     isOpen.value = false;
     toDelete.value = null;
-    tags.value = await $fetch(`/api/vehicles/${props.vehicle}/tags`, {
-      query: {
-        search: search.value,
-        skip: skip.value - 1,
-        take: take,
-      },
-    });
+    tags.value = tags.value.filter((tag) => tag.tagId != id);
   }
 };
 </script>
