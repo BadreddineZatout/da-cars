@@ -33,6 +33,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "admin",
+  middleware: ["auth"],
+});
 const body = new FormData();
 const { data: media } = await useFetch("/api/carousel");
 const handleMedia = (e) => {
