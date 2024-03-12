@@ -34,7 +34,7 @@
 
 <script setup>
 const body = new FormData();
-const media = await $fetch("/api/carousel");
+const { data: media } = await useFetch("/api/carousel");
 const handleMedia = (e) => {
   body.delete("files[]");
   Array.from(e.target.files).forEach((file) => {
@@ -59,7 +59,7 @@ const removeMedia = async (mediaId) => {
   });
 
   if (!response.errors) {
-    media = media.filter((media) => media.id != mediaId);
+    media.value = media.value.filter((media) => media.id != mediaId);
   }
 };
 </script>
