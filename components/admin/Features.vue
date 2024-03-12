@@ -70,10 +70,6 @@ const columns = [
     label: "Name",
   },
   {
-    key: "feature",
-    label: "feature",
-  },
-  {
     key: "actions",
   },
 ];
