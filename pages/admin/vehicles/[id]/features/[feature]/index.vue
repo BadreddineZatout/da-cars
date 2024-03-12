@@ -1,7 +1,7 @@
 <template>
   <div class="w-full p-20">
     <div class="flex items-center justify-between">
-      <h1 class="text-3xl font-bold">feature #{{ feature.id }}</h1>
+      <h1 class="text-3xl font-bold">Feature #{{ feature.id }}</h1>
       <UButton
         @click="handleEdit"
         class="bg-lochmara hover:bg-blue-700"
