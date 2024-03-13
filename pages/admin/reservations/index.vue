@@ -169,19 +169,6 @@ watch([search, skip], async () => {
   });
 });
 
-const getStatus = (status) => {
-  switch (status) {
-    case 1:
-      return '<UBadge color="green" variant="solid">Accepted</UBadge>';
-    case 2:
-      return '<UBadge color="blue" variant="solid">Completed</UBadge>';
-    case 3:
-      return '<UBadge color="red" variant="solid">Cancelled</UBadge>';
-    default:
-      return '<UBadge color="yellow" variant="solid">Pending</UBadge>';
-  }
-};
-
 const confirmDelete = (id) => {
   isOpen.value = true;
   toDelete.value = id;
