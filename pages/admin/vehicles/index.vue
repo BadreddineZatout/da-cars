@@ -85,7 +85,7 @@
       </div>
     </div>
     <UModal v-model="isOpen">
-      <ConfirmDeleteModel
+      <ConfirmDeleteModal
         name="vehicle"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"

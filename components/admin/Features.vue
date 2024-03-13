@@ -43,7 +43,7 @@
       </div>
     </div>
     <UModal v-model="isOpen">
-      <ConfirmDeleteModel
+      <ConfirmDeleteModal
         name="Feature"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"

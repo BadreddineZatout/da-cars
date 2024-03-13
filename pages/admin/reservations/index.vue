@@ -35,13 +35,22 @@
           <span>{{ moment(row.date).format("DD-MM-YYYY") }}</span>
         </template>
         <template #status-data="{ row }">
-          <UBadge v-if="row.status == 0" color="yellow" variant="solid"
+          <UBadge
+            v-if="row.status == Status.PENDING"
+            color="yellow"
+            variant="solid"
             >Pending</UBadge
           >
-          <UBadge v-else-if="row.status == 1" color="green" variant="solid"
+          <UBadge
+            v-else-if="row.status == Status.ACCEPTED"
+            color="green"
+            variant="solid"
             >Accepted</UBadge
           >
-          <UBadge v-else-if="row.status == 2" color="blue" variant="solid"
+          <UBadge
+            v-else-if="row.status == Status.COMPLETED"
+            color="blue"
+            variant="solid"
             >Completed</UBadge
           >
           <UBadge v-else color="red" variant="solid">Cancelled</UBadge>
@@ -67,7 +76,7 @@
       </div>
     </div>
     <UModal v-model="isOpen">
-      <ConfirmDeleteModel
+      <ConfirmDeleteModal
         name="reservation"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
@@ -78,6 +87,7 @@
 
 <script setup>
 import moment from "moment";
+import { Status } from "~/enum";
 
 definePageMeta({
   layout: "admin",

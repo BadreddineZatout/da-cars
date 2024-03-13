@@ -3,8 +3,27 @@
     <div class="flex items-center justify-between">
       <h1 class="text-3xl font-bold">Reservation #{{ reservation.id }}</h1>
       <div class="flex items-center gap-5">
-        <UButton class="bg-lochmara hover:bg-blue-700" label="Accept" />
-        <UButton class="bg-red-500 hover:bg-red-700" label="Cancel" />
+        <UButton
+          v-if="reservation.status == Status.PENDING"
+          @click="showAcceptModal"
+          class="bg-lochmara hover:bg-blue-700"
+          label="Accept"
+        />
+        <UButton
+          v-if="reservation.status == Status.ACCEPTED"
+          @click="showCompleteModal"
+          class="bg-green-500 hover:bg-green-700"
+          label="Complete"
+        />
+        <UButton
+          v-if="
+            reservation.status == Status.PENDING ||
+            reservation.status == Status.ACCEPTED
+          "
+          @click="showCancelModal"
+          class="bg-red-500 hover:bg-red-700"
+          label="Cancel"
+        />
       </div>
     </div>
     <div class="mt-20 w-full">
@@ -56,21 +75,21 @@
           <div class="w-1/4">
             <h2 class="mb-3 text-2xl font-semibold">Status</h2>
             <UBadge
-              v-if="reservation.status == 0"
+              v-if="reservation.status == Status.PENDING"
               size="lg"
               color="yellow"
               variant="solid"
               >Pending</UBadge
             >
             <UBadge
-              v-else-if="reservation.status == 1"
+              v-else-if="reservation.status == Status.ACCEPTED"
               size="lg"
               color="green"
               variant="solid"
               >Accepted</UBadge
             >
             <UBadge
-              v-else-if="reservation.status == 2"
+              v-else-if="reservation.status == Status.COMPLETED"
               size="lg"
               color="blue"
               variant="solid"
@@ -83,18 +102,97 @@
         </div>
       </UCard>
     </div>
+    <UModal v-model="isAcceptOpen">
+      <ConfirmAcceptModal
+        name="reservation"
+        :toAccept="toAccept"
+        @confirm-accept="handleAccept"
+      />
+    </UModal>
+    <UModal v-model="isCancelOpen">
+      <ConfirmCancelModal
+        name="reservation"
+        :toCancel="toCancel"
+        @confirm-cancel="handleCancel"
+      />
+    </UModal>
+    <UModal v-model="isCompleteOpen">
+      <ConfirmCompleteModal
+        name="reservation"
+        :toComplete="toComplete"
+        @confirm-complete="handleComplete"
+      />
+    </UModal>
   </div>
 </template>
 
 <script setup>
 import moment from "moment";
+import { Status } from "~/enum";
 definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
 
+const isAcceptOpen = ref(false);
+const toAccept = ref(null);
+const isCancelOpen = ref(false);
+const toCancel = ref(null);
+const isCompleteOpen = ref(false);
+const toComplete = ref(null);
+
 const route = useRoute();
 const { data: reservation } = await useFetch(
   `/api/reservations/${route.params.id}`,
 );
+
+const showAcceptModal = () => {
+  isAcceptOpen.value = true;
+  toAccept.value = route.params.id;
+};
+const showCancelModal = () => {
+  isCancelOpen.value = true;
+  toCancel.value = route.params.id;
+};
+const showCompleteModal = () => {
+  isCompleteOpen.value = true;
+  toComplete.value = route.params.id;
+};
+
+const handleAccept = async () => {
+  const response = await $fetch(`/api/reservations/${route.params.id}/accept`, {
+    method: "PATCH",
+  });
+
+  if (!response.errors) {
+    isAcceptOpen.value = false;
+    toAccept.value = null;
+    reservation.value.status = Status.ACCEPTED;
+  }
+};
+const handleCancel = async () => {
+  const response = await $fetch(`/api/reservations/${route.params.id}/cancel`, {
+    method: "PATCH",
+  });
+
+  if (!response.errors) {
+    isCancelOpen.value = false;
+    toCancel.value = null;
+    reservation.value.status = Status.CANCELLED;
+  }
+};
+const handleComplete = async () => {
+  const response = await $fetch(
+    `/api/reservations/${route.params.id}/complete`,
+    {
+      method: "PATCH",
+    },
+  );
+
+  if (!response.errors) {
+    isCompleteOpen.value = false;
+    toComplete.value = null;
+    reservation.value.status = Status.COMPLETED;
+  }
+};
 </script>
