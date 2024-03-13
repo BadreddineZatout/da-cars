@@ -23,6 +23,7 @@
         </li>
       </ul>
     </div>
+    <div v-else class="mb-36"></div>
   </div>
 </template>
 
