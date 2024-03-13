@@ -17,14 +17,22 @@ export default defineEventHandler(async (event) => {
   return await prisma.reservation.findMany({
     skip: query.skip * query.take,
     take: query.take,
-    where: {
-      first_name: {
-        contains: query.search,
-      },
-      last_name: {
-        contains: query.search,
-      },
-    },
+    where: query.search
+      ? {
+          OR: [
+            {
+              first_name: {
+                contains: query.search,
+              },
+            },
+            {
+              last_name: {
+                contains: query.search,
+              },
+            },
+          ],
+        }
+      : {},
     orderBy: [
       {
         id: "desc",
