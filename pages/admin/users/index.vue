@@ -36,7 +36,7 @@
       </div>
     </div>
     <UModal v-model="isOpen">
-      <ConfirmDeleteModel
+      <ConfirmDeleteModal
         name="User"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"

@@ -1,68 +1,59 @@
 <template>
   <div class="w-full px-5 py-10">
-    <h1 class="text-3xl font-bold">Vehicles</h1>
+    <h1 class="text-3xl font-bold">Reservations</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter vehicle..." />
+        <UInput v-model.lazy="search" placeholder="Filter reservation..." />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add vehicle"
+          label="Add reservation"
         />
       </div>
-      <UTable :columns="columns" :rows="vehicles">
+      <UTable :columns="columns" :rows="reservations">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
             <span class="text-sm italic">Empty!</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
-              label="Add vehicle"
+              label="Add reservation"
             />
           </div>
         </template>
-        <template #brand-data="{ row }">
-          <span>{{ row.brand.name }}</span>
+        <template #email-data="{ row }">
+          <span>{{ row.email ? row.email : "---" }}</span>
         </template>
-        <template #isPremium-data="{ row }">
-          <svg
-            v-if="row.isPremium"
-            class="w-7 text-green-500"
-            data-slot="icon"
-            aria-hidden="true"
-            fill="none"
-            stroke-width="2"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
-          <svg
-            v-else
-            class="w-7 text-red-500"
-            data-slot="icon"
-            aria-hidden="true"
-            fill="none"
-            stroke-width="2"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
+        <template #service-data="{ row }">
+          <span>{{ row.service.name }}</span>
         </template>
-        <template #rating-data="{ row }">
-          <Rating :rating="row.rating" />
+        <template #item-data="{ row }">
+          <span>{{ row.item.name }}</span>
+        </template>
+        <template #date-data="{ row }">
+          <span>{{ moment(row.date).format("DD-MM-YYYY") }}</span>
+        </template>
+        <template #status-data="{ row }">
+          <UBadge
+            v-if="row.status == Status.PENDING"
+            color="yellow"
+            variant="solid"
+            >Pending</UBadge
+          >
+          <UBadge
+            v-else-if="row.status == Status.ACCEPTED"
+            color="green"
+            variant="solid"
+            >Accepted</UBadge
+          >
+          <UBadge
+            v-else-if="row.status == Status.COMPLETED"
+            color="blue"
+            variant="solid"
+            >Completed</UBadge
+          >
+          <UBadge v-else color="red" variant="solid">Cancelled</UBadge>
         </template>
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
@@ -80,13 +71,13 @@
         <UPagination
           v-model="skip"
           :page-count="take"
-          :total="vehicles_count"
+          :total="reservations_count"
         />
       </div>
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        name="vehicle"
+        name="reservation"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -95,50 +86,53 @@
 </template>
 
 <script setup>
+import moment from "moment";
+import { Status } from "~/enum";
+
 definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
 
-const vehicles = ref(await $fetch("/api/admin/vehicles"));
-const vehicles_count = await $fetch("/api/admin/vehicles/count");
+const reservations = ref(await $fetch("/api/reservations"));
+const reservations_count = await $fetch("/api/reservations/count");
 
 const columns = [
   {
     key: "id",
-    label: "ID",
+    label: "#",
   },
   {
-    key: "name",
-    label: "Name",
+    key: "first_name",
+    label: "First Name",
   },
   {
-    key: "brand",
-    label: "Brand",
+    key: "last_name",
+    label: "Last Name",
   },
   {
-    key: "price",
-    label: "Price",
-  },
-  {
-    key: "phone",
+    key: "phone_number",
     label: "Phone",
   },
   {
-    key: "address",
-    label: "Address",
+    key: "email",
+    label: "Email",
   },
   {
-    key: "isPremium",
-    label: "Premium",
+    key: "service",
+    label: "Service",
   },
   {
-    key: "rating",
-    label: "Rating",
+    key: "item",
+    label: "Item",
   },
   {
-    key: "owner",
-    label: "Owner",
+    key: "date",
+    label: "Date",
+  },
+  {
+    key: "status",
+    label: "Status",
   },
   {
     key: "actions",
@@ -150,12 +144,7 @@ const items = (row) => [
     {
       label: "View",
       icon: "i-heroicons-eye-20-solid",
-      click: () => navigateTo(`/admin/vehicles/${row.id}`),
-    },
-    {
-      label: "Edit",
-      icon: "i-heroicons-pencil-square-20-solid",
-      click: () => navigateTo(`/admin/vehicles/${row.id}/edit`),
+      click: () => navigateTo(`/admin/reservations/${row.id}`),
     },
     {
       label: "Delete",
@@ -173,7 +162,7 @@ const toDelete = ref(null);
 
 watch([search, skip], async () => {
   if (!search.value) {
-    vehicles.value = await $fetch("/api/admin/vehicles", {
+    reservations.value = await $fetch("/api/reservations", {
       query: {
         skip: skip.value - 1,
         take: take,
@@ -181,7 +170,7 @@ watch([search, skip], async () => {
     });
     return;
   }
-  vehicles.value = await $fetch("/api/admin/vehicles", {
+  reservations.value = await $fetch("/api/reservations", {
     query: {
       search: search.value,
       skip: skip.value - 1,
@@ -190,24 +179,20 @@ watch([search, skip], async () => {
   });
 });
 
-const handleCreate = () => {
-  return navigateTo("/admin/vehicles/create");
-};
-
 const confirmDelete = (id) => {
   isOpen.value = true;
   toDelete.value = id;
 };
 
 const handleDelete = async (id) => {
-  const response = await $fetch(`/api/admin/vehicles/${id}`, {
+  const response = await $fetch(`/api/reservations/${id}`, {
     method: "DELETE",
   });
 
   if (!response.errors) {
     isOpen.value = false;
     toDelete.value = null;
-    vehicles.value = await $fetch("/api/admin/vehicles", {
+    reservations.value = await $fetch("/api/reservations", {
       query: {
         search: search.value,
         skip: skip.value - 1,
