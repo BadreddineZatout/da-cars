@@ -4,15 +4,26 @@
       <img src="/logo.jpg" alt="logo" />
     </NuxtLink>
     <div
-      class="flex w-1/3 items-center justify-between font-semibold text-white"
+      class="flex w-1/2 items-center justify-end gap-x-5 font-semibold text-white"
     >
-      <NuxtLink class="hover:underline" to="/services">Services</NuxtLink>
-      <NuxtLink class="hover:underline" to="/vehicles">Vehicles</NuxtLink>
-      <NuxtLink class="hover:underline" to="#contact">Contact</NuxtLink>
-      <NuxtLink v-if="store.isLogged" class="ml-5 hover:underline" to="/admin"
-        >Admin</NuxtLink
+      <NuxtLink class="hover:underline" to="/services">{{
+        $t("services")
+      }}</NuxtLink>
+      <NuxtLink class="hover:underline" to="/vehicles">{{
+        $t("vehicles")
+      }}</NuxtLink>
+      <NuxtLink class="hover:underline" to="#contact">{{
+        $t("contact")
+      }}</NuxtLink>
+      <NuxtLink
+        v-if="store.isLogged"
+        class="ml-5 hover:underline"
+        to="/admin"
+        >{{ $t("admin") }}</NuxtLink
       >
-      <NuxtLink v-else class="ml-5 hover:underline" to="/login">Login</NuxtLink>
+      <NuxtLink v-else class="ml-5 hover:underline" to="/login">{{
+        $t("login")
+      }}</NuxtLink>
 
       <UDropdown
         class="ml-5"

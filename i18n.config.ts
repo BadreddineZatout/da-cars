@@ -3,10 +3,16 @@ export default defineI18nConfig(() => ({
   locale: "de",
   messages: {
     fr: {
-      welcome: "Bienvenu",
+      services: "Services",
+      vehicles: "Véhicules",
+      contact: "Contact",
+      login: "Connexion",
     },
     de: {
-      welcome: "Wilkommen",
+      services: "Dienstleistungen",
+      vehicles: "Fahrzeuge",
+      contact: "Kontakt",
+      login: "Einloggen",
     },
   },
 }));
