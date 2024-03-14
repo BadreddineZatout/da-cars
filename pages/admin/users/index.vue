@@ -40,7 +40,7 @@
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        name="User"
+        :name="$t('user')"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />

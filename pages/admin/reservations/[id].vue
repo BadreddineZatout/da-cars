@@ -7,13 +7,13 @@
           v-if="reservation.status == Status.PENDING"
           @click="showAcceptModal"
           class="bg-lochmara hover:bg-blue-700"
-          label="Accept"
+          :label="$t('accept')"
         />
         <UButton
           v-if="reservation.status == Status.ACCEPTED"
           @click="showCompleteModal"
           class="bg-green-500 hover:bg-green-700"
-          label="Complete"
+          :label="$t('complete')"
         />
         <UButton
           v-if="
@@ -22,7 +22,7 @@
           "
           @click="showCancelModal"
           class="bg-red-500 hover:bg-red-700"
-          label="Cancel"
+          :label="$t('cancel')"
         />
       </div>
     </div>
@@ -31,11 +31,11 @@
         <template #header>
           <div class="flex flex-wrap items-center">
             <div class="w-1/2">
-              <h2 class="text-2xl font-semibold">First Name</h2>
+              <h2 class="text-2xl font-semibold">{{ $t("first_name") }}</h2>
               <h3 class="mt-3 text-xl">{{ reservation.first_name }}</h3>
             </div>
             <div class="w-1/2">
-              <h2 class="text-2xl font-semibold">Last Name</h2>
+              <h2 class="text-2xl font-semibold">{{ $t("last_name") }}</h2>
               <h3 class="mt-3 text-xl">{{ reservation.last_name }}</h3>
             </div>
           </div>
@@ -43,82 +43,82 @@
 
         <div class="mb-10 flex flex-wrap gap-10">
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Phone</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("phone_number") }}</h2>
             <p class="mt-3 text-xl">{{ reservation.phone_number }}</p>
           </div>
 
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Email</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("email") }}</h2>
             <p class="mt-3 text-xl">
               {{ reservation.email ? reservation.email : "---" }}
             </p>
           </div>
 
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Service</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("service") }}</h2>
             <p class="mt-3 text-xl">
               {{ reservation.service.name }}
             </p>
           </div>
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Item</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("item") }}</h2>
             <p class="mt-3 text-xl">
               {{ reservation.item.name }}
             </p>
           </div>
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Date</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("date") }}</h2>
             <p class="mt-3 text-xl">
               {{ moment(reservation.date).format("DD-MM-YYYY") }}
             </p>
           </div>
           <div class="w-1/4">
-            <h2 class="mb-3 text-2xl font-semibold">Status</h2>
+            <h2 class="mb-3 text-2xl font-semibold">{{ $t("status") }}</h2>
             <UBadge
               v-if="reservation.status == Status.PENDING"
               size="lg"
               color="yellow"
               variant="solid"
-              >Pending</UBadge
+              >{{ $t("pending") }}</UBadge
             >
             <UBadge
               v-else-if="reservation.status == Status.ACCEPTED"
               size="lg"
               color="green"
               variant="solid"
-              >Accepted</UBadge
+              >{{ $t("accepted") }}</UBadge
             >
             <UBadge
               v-else-if="reservation.status == Status.COMPLETED"
               size="lg"
               color="blue"
               variant="solid"
-              >Completed</UBadge
+              >{{ $t("completed") }}</UBadge
             >
-            <UBadge v-else size="lg" color="red" variant="solid"
-              >Cancelled</UBadge
-            >
+            <UBadge v-else size="lg" color="red" variant="solid">{{
+              $t("cancelled")
+            }}</UBadge>
           </div>
         </div>
       </UCard>
     </div>
     <UModal v-model="isAcceptOpen">
       <ConfirmAcceptModal
-        name="reservation"
+        :name="$t('reservation')"
         :toAccept="toAccept"
         @confirm-accept="handleAccept"
       />
     </UModal>
     <UModal v-model="isCancelOpen">
       <ConfirmCancelModal
-        name="reservation"
+        :name="$t('reservation')"
         :toCancel="toCancel"
         @confirm-cancel="handleCancel"
       />
     </UModal>
     <UModal v-model="isCompleteOpen">
       <ConfirmCompleteModal
-        name="reservation"
+        :name="$t('reservation')"
         :toComplete="toComplete"
         @confirm-complete="handleComplete"
       />
