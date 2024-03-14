@@ -1,9 +1,14 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Settings</h1>
+    <h1 class="text-3xl font-bold">{{ $t("settings") }}</h1>
     <div class="mt-10 w-full">
       <UForm class="space-y-4" @submit="onSubmit">
-        <UFormGroup class="w-1/2" size="xl" label="Carousel Media" name="media">
+        <UFormGroup
+          class="w-1/2"
+          size="xl"
+          :label="$t('carousel_media')"
+          name="media"
+        >
           <input
             class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
             id="media"
@@ -14,7 +19,7 @@
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
       <div class="mt-10 flex flex-wrap gap-10">

@@ -18,7 +18,7 @@
       <NuxtLink
         v-if="store.isLogged"
         class="ml-5 hover:underline"
-        to="/admin"
+        :to="localePath('/admin')"
         >{{ $t("admin") }}</NuxtLink
       >
       <NuxtLink

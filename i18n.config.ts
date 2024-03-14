@@ -54,6 +54,8 @@ export default defineI18nConfig(() => ({
       users: "Utilisateurs",
       settings: "Paramèters",
       log_out: "Se Déconnecter",
+      carousel_media: "Médias Carrousel",
+      submit: "Soumettre",
     },
     de: {
       admin: "Admin",
@@ -107,6 +109,8 @@ export default defineI18nConfig(() => ({
       users: "Benutzer",
       settings: "Einstellungen",
       log_out: "Abmelden",
+      carousel_media: "Karussellmedien",
+      submit: "vorlegen",
     },
   },
 }));
