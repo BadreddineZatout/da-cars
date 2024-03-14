@@ -6,7 +6,7 @@
     v-model="option"
     @change="handleSelect"
   >
-    <option value="">Choose a {{ label }}</option>
+    <option value="">{{ $t("choose") }} {{ label }}</option>
     <option v-for="option in options" :key="option.id" :value="option.value">
       {{ option.name }}
     </option>

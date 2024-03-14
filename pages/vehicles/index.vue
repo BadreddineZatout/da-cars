@@ -12,7 +12,9 @@
       <div class="mb-5 flex w-full justify-end">
         <Search @search="handleSearch" @clear-search="handleClearSearch" />
       </div>
-      <h1 class="text-2xl font-bold">{{ vehicles.length ?? 0 }} Vehicles</h1>
+      <h1 class="text-2xl font-bold">
+        {{ vehicles.length ?? 0 }} {{ $t("vehicles") }}
+      </h1>
       <div v-if="vehicles.length" class="mt-5">
         <VehicleCard
           v-for="vehicle in vehicles"

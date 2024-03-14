@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10 px-5">
     <h1 class="border-b border-lochmara py-3 text-xl font-semibold">
-      Technical Data
+      {{ $t("technical_data") }}
     </h1>
     <div class="mt-5">
       <div
