@@ -11,10 +11,10 @@
         <img class="w-1/2" src="/logo.jpg" alt="logo" />
       </div>
       <div class="mb-5 w-full text-center">
-        <h1 class="text-3xl font-bold">Login</h1>
+        <h1 class="text-3xl font-bold">{{ $t("login") }}</h1>
       </div>
       <div class="mb-5 grid">
-        <label class="font-semibold" for="email">Email</label>
+        <label class="font-semibold" for="email">{{ $t("email") }}</label>
         <input
           class="rounded-md border border-gray-500 px-3 py-2"
           id="email"
@@ -25,7 +25,7 @@
         />
       </div>
       <div class="mb-5 grid">
-        <label class="font-semibold" for="password">Password</label>
+        <label class="font-semibold" for="password">{{ $t("password") }}</label>
         <input
           class="rounded-md border border-gray-500 px-3 py-2"
           id="password"
@@ -49,7 +49,7 @@
           class="mt-10 rounded-md border border-gray-500 px-10 py-2 hover:bg-lochmara hover:text-white"
           type="submit"
         >
-          Login
+          {{ $t("login") }}
         </button>
       </div>
     </form>

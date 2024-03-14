@@ -14,6 +14,9 @@ export default defineI18nConfig(() => ({
       recommanded_for_you: "Recommandé pour vous",
       see_more: "Voir Plus",
       popular_brands: "Marques automobiles populaires",
+      email: "Email",
+      password: "Mot de passe",
+      redirection_logged: "Vous êtes connecté, Redirection",
     },
     de: {
       services: "Dienstleistungen",
@@ -27,6 +30,9 @@ export default defineI18nConfig(() => ({
       recommanded_for_you: "Empfohlen für Sie",
       see_more: "Mehr Sehen",
       popular_brands: "Beliebte Automarken",
+      email: "EMail",
+      password: "Passwort",
+      redirection_logged: "Sie sind angemeldet, Umleitung",
     },
   },
 }));
