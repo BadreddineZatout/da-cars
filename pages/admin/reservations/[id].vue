@@ -104,21 +104,21 @@
     </div>
     <UModal v-model="isAcceptOpen">
       <ConfirmAcceptModal
-        :name="$t('reservation')"
+        name="reservation"
         :toAccept="toAccept"
         @confirm-accept="handleAccept"
       />
     </UModal>
     <UModal v-model="isCancelOpen">
       <ConfirmCancelModal
-        :name="$t('reservation')"
+        name="reservation"
         :toCancel="toCancel"
         @confirm-cancel="handleCancel"
       />
     </UModal>
     <UModal v-model="isCompleteOpen">
       <ConfirmCompleteModal
-        :name="$t('reservation')"
+        name="reservation"
         :toComplete="toComplete"
         @confirm-complete="handleComplete"
       />

@@ -13,7 +13,7 @@
       <UTable :columns="columns" :rows="reservations">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
-            <span class="text-sm italic">Empty!</span>
+            <span class="text-sm italic">{{ $t("empty") }}</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
               :label="$t('add_reservation')"
@@ -77,7 +77,7 @@
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        :name="$t('reservation')"
+        name="reservation"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -149,7 +149,7 @@ const items = (row) => [
       click: () => navigateTo(localePath(`/admin/reservations/${row.id}`)),
     },
     {
-      label: t("Delete"),
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },

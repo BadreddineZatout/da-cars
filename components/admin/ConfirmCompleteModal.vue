@@ -7,10 +7,12 @@
       }"
     >
       <template #header>
-        <h1 class="text-xl font-bold">Complete {{ name }} #{{ toComplete }}</h1>
+        <h1 class="text-xl font-bold">
+          {{ $t("complete") }} {{ $t(name.toLowerCase()) }} #{{ toComplete }}
+        </h1>
       </template>
 
-      <p>Are you sure you want to complete this {{ name.toLowerCase() }}?</p>
+      <p>{{ $t("confirm_complete_" + name.toLowerCase()) }}</p>
 
       <template #footer>
         <div class="flex justify-end">

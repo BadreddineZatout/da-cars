@@ -89,10 +89,22 @@ export default defineI18nConfig(() => ({
       accept: "Accepter",
       complete: "Completer",
       cancel: "Annuler",
+      confirm_delete_user: "Êtes-vous sûr de vouloir supprimer ce utilisateur?",
+      confirm_delete_item: "Êtes-vous sûr de vouloir supprimer cet article?",
+      confirm_delete_service: "Êtes-vous sûr de vouloir supprimer ce service?",
+      confirm_delete_reservation:
+        "Êtes-vous sûr de vouloir supprimer ce reservation?",
+      confirm_accept_reservation:
+        "Êtes-vous sûr de vouloir accepter ce reservation?",
+      confirm_complete_reservation:
+        "Êtes-vous sûr de vouloir completer ce reservation?",
+      confirm_cancel_reservation:
+        "Êtes-vous sûr de vouloir annuler ce reservation?",
     },
     de: {
       admin: "Admin",
       services: "Dienstleistungen",
+      service: "Dienstleistung",
       vehicles: "Fahrzeuge",
       contact: "Kontakt",
       login: "Einloggen",
@@ -176,6 +188,20 @@ export default defineI18nConfig(() => ({
       accept: "Akzepieren",
       complete: "Vollenden",
       cancel: "Stornieren",
+      confirm_delete_user:
+        "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+      confirm_delete_item:
+        "Sind Sie sicher, dass Sie diesen Artikel löschen möchten?",
+      confirm_delete_service:
+        "Sind Sie sicher, dass Sie diesen Dienst löschen möchten?",
+      confirm_delete_reservation:
+        "Sind Sie sicher, dass Sie diese Reservierung löschen möchten?",
+      confirm_accept_reservation:
+        "Sind Sie sicher, dass Sie diese Reservierung annehmen möchten?",
+      confirm_complete_reservation:
+        "Sind Sie sicher, dass Sie diese Reservierung abschließen möchten?",
+      confirm_cancel_reservation:
+        "Sind Sie sicher, dass Sie diese Reservierung stornieren möchten?",
     },
   },
 }));

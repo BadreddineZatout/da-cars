@@ -7,10 +7,12 @@
       }"
     >
       <template #header>
-        <h1 class="text-xl font-bold">Cancel {{ name }} #{{ toCancel }}</h1>
+        <h1 class="text-xl font-bold">
+          {{ $t("cancel") }} {{ $t(name.toLowerCase()) }} #{{ toCancel }}
+        </h1>
       </template>
 
-      <p>Are you sure you want to cancel this {{ name.toLowerCase() }}?</p>
+      <p>{{ $t("confirm_cancel_" + name.toLowerCase()) }}</p>
 
       <template #footer>
         <div class="flex justify-end">

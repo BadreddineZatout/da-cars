@@ -78,7 +78,7 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
       click: () =>
         navigateTo(
@@ -86,7 +86,7 @@ const items = (row) => [
         ),
     },
     {
-      label: "Edit",
+      label: t("edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () =>
         navigateTo(
@@ -94,7 +94,7 @@ const items = (row) => [
         ),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },

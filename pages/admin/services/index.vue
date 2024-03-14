@@ -44,7 +44,7 @@
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        :name="$t('service')"
+        name="service"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
