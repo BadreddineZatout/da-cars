@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Create Service</h1>
+    <h1 class="text-3xl font-bold">{{ $t("add_service") }}</h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"
@@ -8,16 +8,16 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup label="name" name="name">
+        <UFormGroup :label="$t('name')" name="name">
           <UInput v-model="service.name" />
         </UFormGroup>
 
-        <UFormGroup label="description" name="description">
+        <UFormGroup :label="$t('description')" name="description">
           <UTextarea v-model="service.description" />
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -31,6 +31,7 @@ definePageMeta({
   middleware: ["auth"],
 });
 const { t } = useI18n();
+const localePath = useLocalePath();
 const schema = object({
   name: string().required(t("required")),
   description: string().required(t("required")),
@@ -48,7 +49,7 @@ const onSubmit = async () => {
   });
 
   if (!response.errors) {
-    return navigateTo("/admin/services");
+    return navigateTo(localePath("/admin/services"));
   }
 };
 </script>

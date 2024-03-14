@@ -1,24 +1,24 @@
 <template>
   <div class="w-full px-5 py-10">
-    <h1 class="text-3xl font-bold">Services</h1>
+    <h1 class="text-3xl font-bold">{{ $t("services") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter service..." />
+        <UInput v-model.lazy="search" :placeholder="$t('filter_services')" />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add service"
+          :label="$t('add_service')"
         />
       </div>
       <UTable :columns="columns" :rows="services">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
-            <span class="text-sm italic">Empty!</span>
+            <span class="text-sm italic">{{ $t("empty") }}</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
-              label="Add service"
+              :label="$t('add_service')"
             />
           </div>
         </template>
@@ -58,17 +58,20 @@ definePageMeta({
   middleware: ["auth"],
 });
 
+const localePath = useLocalePath();
+const { t } = useI18n();
+
 const services = ref(await $fetch("/api/services"));
 const services_count = await $fetch("/api/services/count");
 
 const columns = [
   {
     key: "id",
-    label: "ID",
+    label: "#",
   },
   {
     key: "name",
-    label: "Name",
+    label: t("name"),
   },
   {
     key: "actions",
@@ -78,17 +81,17 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
-      click: () => navigateTo(`/admin/services/${row.id}`),
+      click: () => navigateTo(localePath(`/admin/services/${row.id}`)),
     },
     {
-      label: "Edit",
+      label: t("edit"),
       icon: "i-heroicons-pencil-square-20-solid",
-      click: () => navigateTo(`/admin/services/${row.id}/edit`),
+      click: () => navigateTo(localePath(`/admin/services/${row.id}/edit`)),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },
@@ -121,7 +124,7 @@ watch([search, skip], async () => {
 });
 
 const handleCreate = () => {
-  return navigateTo("/admin/services/create");
+  return navigateTo(localePath("/admin/services/create"));
 };
 
 const confirmDelete = (id) => {

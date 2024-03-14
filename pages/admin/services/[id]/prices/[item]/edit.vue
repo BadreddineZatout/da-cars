@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Edit Item #{{ price.id }}</h1>
+    <h1 class="text-3xl font-bold">{{ $t("edit_price") }} #{{ price.id }}</h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"
@@ -8,16 +8,16 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup label="name" name="name">
+        <UFormGroup :label="$t('name')" name="name">
           <UInput v-model="price.name" />
         </UFormGroup>
 
-        <UFormGroup label="price" name="price">
+        <UFormGroup :label="$t('price')" name="price">
           <UInput v-model="price.price" type="number" />
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -31,6 +31,7 @@ definePageMeta({
   middleware: ["auth"],
 });
 const { t } = useI18n();
+const localePath = useLocalePath();
 const schema = object({
   name: string().required(t("required")),
   price: number().required(t("required")),
@@ -48,7 +49,7 @@ const onSubmit = async () => {
   });
 
   if (!response.errors) {
-    return navigateTo(`/admin/services/${route.params.id}`);
+    return navigateTo(localePath(`/admin/services/${route.params.id}`));
   }
 };
 </script>
