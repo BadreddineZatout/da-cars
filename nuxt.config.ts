@@ -16,7 +16,18 @@ export default defineNuxtConfig({
     },
   ],
 
-  modules: ["@nuxt/ui", "@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxtjs/i18n",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+  ],
+
+  i18n: {
+    vueI18n: "./i18n.config.ts",
+    locales: ["fr", "de"],
+    defaultLocale: "fr",
+  },
 
   build: {
     transpile: ["@vuepic/vue-datepicker"],
