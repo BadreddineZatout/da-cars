@@ -9,8 +9,7 @@
       <div class="w-4/6 flex-col">
         <h1 class="text-2xl font-bold">DA-Cars</h1>
         <h2 class="mb-5 w-3/4 text-xl font-semibold">
-          Auto An- & Verkauf, Professionelle KFZ-Pflege, FOLIATEC
-          Scheibentönung, Alufelgen, Reifen, Autoglasservice, Klimaservice
+          {{ $t("sub_title") }}
         </h2>
         <div class="mb-2 flex items-center">
           <svg

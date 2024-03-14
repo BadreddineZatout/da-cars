@@ -3,11 +3,12 @@
     <div
       class="my-5 flex items-center justify-between border-b border-lochmara"
     >
-      <h1 class="text-3xl font-semibold">Recommanded For You</h1>
+      <h1 class="text-3xl font-semibold">{{ $t("recommanded_for_you") }}</h1>
       <a
         class="flex items-center hover:font-semibold hover:underline"
         href="/vehicles"
-        >See More<svg
+        >{{ $t("see_more")
+        }}<svg
           class="w-5"
           data-slot="icon"
           aria-hidden="true"

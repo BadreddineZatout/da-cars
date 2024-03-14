@@ -1,7 +1,7 @@
 <template>
   <div class="my-10 px-20">
     <h1 class="my-5 border-b border-lochmara text-3xl font-semibold">
-      Services
+      {{ $t("services") }}
     </h1>
     <div class="grid grid-cols-3 gap-5">
       <div

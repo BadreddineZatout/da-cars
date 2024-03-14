@@ -5,22 +5,10 @@
     <div class="w-full lg:w-1/2">
       <h1 class="text-royalBlue-500 mb-1 text-3xl font-bold">Da Cars</h1>
       <h2 class="mb-5 text-xl font-semibold">
-        Auto An- & Verkauf, Professionelle KFZ-Pflege, FOLIATEC Scheibentönung,
-        Alufelgen, Reifen, Autoglasservice, Klimaservice
+        {{ $t("sub_title") }}
       </h2>
       <p class="indent-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis
-        libero assumenda soluta similique sint ipsam perspiciatis facere numquam
-        aliquid, velit tempora non. Consectetur debitis, eum asperiores quisquam
-        doloribus necessitatibus.
-      </p>
-      <p class="indent-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro esse
-        doloremque veritatis aspernatur a quibusdam tempore quo blanditiis nihil
-        quisquam nam dolor et, perspiciatis non at rem ipsa, facere sapiente!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio quia
-        soluta fuga voluptates. Quasi cupiditate praesentium iure et est
-        consectetur autem quam nulla quia. Vitae quaerat pariatur quae ut velit.
+        {{ $t("company_description") }}
       </p>
     </div>
     <div class="hidden w-1/2 lg:block">

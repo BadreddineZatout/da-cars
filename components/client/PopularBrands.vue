@@ -1,7 +1,7 @@
 <template>
   <div class="my-10 px-20">
     <h1 class="my-5 border-b border-lochmara text-3xl font-semibold">
-      Popular car brands
+      {{ $t("popular_brands") }}
     </h1>
     <div class="grid grid-cols-6 gap-y-5 p-5">
       <div v-for="brand in brands" :key="brand.id">
