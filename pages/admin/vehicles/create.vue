@@ -85,16 +85,18 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
-
+const { t } = useI18n();
 const schema = object({
-  name: string().required("Required"),
-  description: string().required("Required"),
-  brand: number().required("Required"),
-  price: number().min(0, "Price must be greater than 0").required("Required"),
-  phone: string().required("Required"),
-  address: string().required("Required"),
-  owner: string().required("Required"),
-  rating: number().required("Required"),
+  name: string().required(t("required")),
+  description: string().required(t("required")),
+  brand: number().required(t("required")),
+  price: number()
+    .min(0, "Price must be greater than 0")
+    .required(t("required")),
+  phone: string().required(t("required")),
+  address: string().required(t("required")),
+  owner: string().required(t("required")),
+  rating: number().required(t("required")),
   isPremium: boolean(),
 });
 

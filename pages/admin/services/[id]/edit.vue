@@ -30,10 +30,10 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
-
+const { t } = useI18n();
 const schema = object({
-  name: string().required("Required"),
-  description: string().required("Required"),
+  name: string().required(t("required")),
+  description: string().required(t("required")),
 });
 const route = useRoute();
 const { data: service } = await useFetch(`/api/services/${route.params.id}`);

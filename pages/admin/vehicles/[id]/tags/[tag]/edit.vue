@@ -24,9 +24,9 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
-
+const { t } = useI18n();
 const schema = object({
-  value: string().required("Required"),
+  value: string().required(t("required")),
 });
 const route = useRoute();
 const { data: tag } = await useFetch(

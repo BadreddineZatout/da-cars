@@ -43,13 +43,13 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
-
+const { t } = useI18n();
 const route = useRoute();
 
 const schema = object({
   id: number(),
   name: string(),
-  value: string().required("Required"),
+  value: string().required(t("required")),
 });
 
 const tag = reactive({

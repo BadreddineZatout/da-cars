@@ -26,11 +26,11 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
-
+const { t } = useI18n();
 const route = useRoute();
 
 const schema = object({
-  name: string().required("Required"),
+  name: string().required(t("required")),
 });
 
 const feature = reactive({
