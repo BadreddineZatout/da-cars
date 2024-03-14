@@ -6,15 +6,15 @@ export default defineEventHandler(async (event) => {
 
   return {
     reservation: {
-      title: "Total Reservations",
+      title: "reservations_total",
       value: reservations,
     },
     service: {
-      title: "Total Services",
+      title: "services_total",
       value: services,
     },
     vehicle: {
-      title: "Total Vehicles",
+      title: "vehicles_total",
       value: vehicles,
     },
   };

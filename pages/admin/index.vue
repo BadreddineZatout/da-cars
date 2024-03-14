@@ -1,14 +1,14 @@
 <template>
   <div class="w-full p-10">
-    <h1 class="text-3xl font-semibold">Welcome to the admin panel</h1>
+    <h1 class="text-3xl font-semibold">{{ $t("welcome_admin") }}</h1>
     <div class="mt-10 flex flex-wrap gap-x-16 gap-y-10">
       <Card
         class="w-1/4"
-        :title="reservation.title"
+        :title="$t(reservation.title)"
         :value="reservation.value"
       />
-      <Card class="w-1/4" :title="vehicle.title" :value="vehicle.value" />
-      <Card class="w-1/4" :title="service.title" :value="service.value" />
+      <Card class="w-1/4" :title="$t(vehicle.title)" :value="vehicle.value" />
+      <Card class="w-1/4" :title="$t(service.title)" :value="service.value" />
     </div>
   </div>
 </template>

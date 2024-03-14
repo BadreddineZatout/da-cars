@@ -7,7 +7,7 @@
       <ul class="space-y-5 font-medium">
         <li>
           <NuxtLink
-            to="/admin"
+            :to="localePath('/admin')"
             class="group mt-10 flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
             :class="{ 'text-lochmara': $route.path == '/admin' }"
           >
@@ -25,12 +25,12 @@
                 d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
               />
             </svg>
-            <span class="ms-3">Dashboard</span>
+            <span class="ms-3">{{ $t("dashboard") }}</span>
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/admin/reservations"
+            :to="localePath('/admin/reservations')"
             class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
             :class="{
               'text-lochmara': $route.path.includes('/admin/reservations'),
@@ -52,12 +52,14 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
-            <span class="ms-3 flex-1 whitespace-nowrap">Reservations</span>
+            <span class="ms-3 flex-1 whitespace-nowrap">{{
+              $t("reservations")
+            }}</span>
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/admin/vehicles"
+            :to="localePath('/admin/vehicles')"
             class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
             :class="{
               'text-lochmara': $route.path.includes('/admin/vehicles'),
@@ -79,12 +81,14 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
-            <span class="ms-3 flex-1 whitespace-nowrap">Vehicles</span>
+            <span class="ms-3 flex-1 whitespace-nowrap">{{
+              $t("vehicles")
+            }}</span>
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/admin/services"
+            :to="localePath('/admin/services')"
             class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
             :class="{
               'text-lochmara': $route.path.includes('/admin/services'),
@@ -106,7 +110,9 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
-            <span class="ms-3 flex-1 whitespace-nowrap">Services</span>
+            <span class="ms-3 flex-1 whitespace-nowrap">{{
+              $t("services")
+            }}</span>
           </NuxtLink>
         </li>
         <li>
@@ -131,12 +137,12 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
-            <span class="ms-3 flex-1 whitespace-nowrap">Users</span>
+            <span class="ms-3 flex-1 whitespace-nowrap">{{ $t("users") }}</span>
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/admin/settings"
+            :to="localePath('/admin/settings')"
             class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
             :class="{
               'text-lochmara': $route.path.includes('/admin/settings'),
@@ -163,7 +169,9 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
-            <span class="ms-3 flex-1 whitespace-nowrap">Settings</span>
+            <span class="ms-3 flex-1 whitespace-nowrap">{{
+              $t("settings")
+            }}</span>
           </NuxtLink>
         </li>
         <li>
@@ -187,7 +195,9 @@
                 stroke-linejoin="round"
               ></path>
             </svg>
-            <span class="ms-3 flex-1 whitespace-nowrap">Log Out</span>
+            <span class="ms-3 flex-1 whitespace-nowrap">{{
+              $t("log_out")
+            }}</span>
           </button>
         </li>
       </ul>
@@ -196,10 +206,11 @@
 </template>
 
 <script setup>
+const localePath = useLocalePath();
 const store = useStore();
 const handleLogout = () => {
   store.$reset();
-  return navigateTo("/", {
+  return navigateTo(localePath("/"), {
     replace: true,
   });
 };

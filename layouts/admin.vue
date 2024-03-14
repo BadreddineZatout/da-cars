@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>Admin Panel</Title>
+    <Title>Admin</Title>
   </Head>
   <div class="flex">
     <Sidebar />
