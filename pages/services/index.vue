@@ -1,6 +1,6 @@
 <template>
   <div class="my-10 px-20">
-    <h1 class="my-5 text-3xl font-semibold">Our Services</h1>
+    <h1 class="my-5 text-3xl font-semibold">{{ $t("our_services") }}</h1>
     <div class="grid grid-cols-2 gap-5">
       <a
         :href="`services/${service.id}`"

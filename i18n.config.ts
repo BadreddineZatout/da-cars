@@ -17,6 +17,9 @@ export default defineI18nConfig(() => ({
       email: "Email",
       password: "Mot de passe",
       redirection_logged: "Vous êtes connecté, Redirection",
+      our_services: "Nos Services",
+      reserve: "Reserver",
+      prices: "Prix",
     },
     de: {
       services: "Dienstleistungen",
@@ -33,6 +36,9 @@ export default defineI18nConfig(() => ({
       email: "EMail",
       password: "Passwort",
       redirection_logged: "Sie sind angemeldet, Umleitung",
+      our_services: "Unsere Dienstleistungen",
+      reserve: "Reservieren",
+      prices: "Preise",
     },
   },
 }));
