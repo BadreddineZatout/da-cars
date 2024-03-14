@@ -7,10 +7,10 @@
       <div v-for="brand in brands" :key="brand.id">
         <h2 class="text-xl font-semibold">{{ brand.name }}</h2>
         <p v-for="sub_brand in brand.subBrands" :key="sub_brand">
-          <a
+          <NuxtLink
             class="hover:underline"
-            :href="`/vehicles?brand=${sub_brand.id}`"
-            >{{ sub_brand.name }}</a
+            :to="localePath(`/vehicles?brand=${sub_brand.id}`)"
+            >{{ sub_brand.name }}</NuxtLink
           >
         </p>
       </div>
@@ -20,4 +20,5 @@
 
 <script setup>
 const props = defineProps(["brands"]);
+const localePath = useLocalePath();
 </script>

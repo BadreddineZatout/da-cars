@@ -9,7 +9,9 @@
         :key="service.id"
         class="col-span-1 rounded-md border border-black bg-gray-50 p-5 text-center text-2xl hover:cursor-pointer hover:border-2 hover:font-semibold"
       >
-        <a :href="`services/${service.id}`">{{ service.name }}</a>
+        <NuxtLink :to="localePath(`services/${service.id}`)">{{
+          service.name
+        }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -17,4 +19,5 @@
 
 <script setup>
 const props = defineProps(["services"]);
+const localePath = useLocalePath();
 </script>

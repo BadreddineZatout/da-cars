@@ -4,9 +4,9 @@
       class="my-5 flex items-center justify-between border-b border-lochmara"
     >
       <h1 class="text-3xl font-semibold">{{ $t("recommanded_for_you") }}</h1>
-      <a
+      <NuxtLink
         class="flex items-center hover:font-semibold hover:underline"
-        href="/vehicles"
+        :to="localePath('/vehicles')"
         >{{ $t("see_more")
         }}<svg
           class="w-5"
@@ -23,7 +23,7 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           ></path></svg
-      ></a>
+      ></NuxtLink>
     </div>
     <div class="grid grid-cols-3 gap-5">
       <Vehicle
@@ -37,4 +37,5 @@
 
 <script setup>
 const props = defineProps(["vehicles"]);
+const localePath = useLocalePath();
 </script>

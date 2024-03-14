@@ -3,6 +3,7 @@ export default defineI18nConfig(() => ({
   locale: "de",
   messages: {
     fr: {
+      admin: "Admin",
       services: "Services",
       vehicles: "Véhicules",
       contact: "Contact",
@@ -46,6 +47,7 @@ export default defineI18nConfig(() => ({
       technical_data: "Données Techniques",
     },
     de: {
+      admin: "Admin",
       services: "Dienstleistungen",
       vehicles: "Fahrzeuge",
       contact: "Kontakt",
