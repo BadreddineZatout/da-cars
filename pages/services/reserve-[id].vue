@@ -1,13 +1,15 @@
 <template>
   <div class="grid grid-cols-2 gap-5 px-40 py-20">
     <div class="col-span-1">
-      <h1 class="text-3xl font-bold text-lochmara">Make An Appointment</h1>
+      <h1 class="text-3xl font-bold text-lochmara">
+        {{ $t("make_appointment") }}
+      </h1>
       <form>
         <div class="mt-5">
           <label
             for="first_name"
             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >First name</label
+            >{{ $t("first_name") }}</label
           >
           <input
             type="text"
@@ -22,7 +24,7 @@
           <label
             for="last_name"
             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Last name</label
+            >{{ $t("last_name") }}</label
           >
           <input
             type="text"
@@ -37,7 +39,7 @@
           <label
             for="phone-input"
             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Phone number:</label
+            >{{ $t("phone_number") }}</label
           >
           <div class="relative">
             <div
@@ -71,7 +73,7 @@
           <label
             for="email"
             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Email address</label
+            >{{ $t("email") }}</label
           >
           <input
             type="email"
@@ -86,14 +88,14 @@
           <label
             for="items"
             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Service Options</label
+            >{{ $t("service_options") }}</label
           >
           <select
             id="items"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             v-model="reservation.itemId"
           >
-            <option selected>Choose an Option</option>
+            <option selected>{{ $t("choose_option") }}</option>
             <option
               v-for="item in service.items"
               :key="item.id"
@@ -108,7 +110,7 @@
           <label
             for="email"
             class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Appointment Date</label
+            >{{ $t("date") }}</label
           >
           <VueDatePicker
             v-model="reservation.date"
@@ -129,7 +131,7 @@
           class="mt-5 w-full rounded-lg bg-lochmara px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
           @click="handleSubmit"
         >
-          Reserve
+          {{ $t("reserve") }}
         </button>
       </form>
     </div>
