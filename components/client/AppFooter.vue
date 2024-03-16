@@ -1,14 +1,14 @@
 <template>
   <div id="contact" class="bg-black px-14 pb-2 pt-5 text-white">
-    <div class="flex justify-around">
-      <div class="w-1/6">
+    <div class="flex flex-col justify-around sm:flex-row">
+      <div class="w-full sm:w-1/6">
         <NuxtLink to="/">
           <img src="/logo.jpg" alt="logo" />
         </NuxtLink>
       </div>
-      <div class="w-4/6 flex-col">
+      <div class="w-full flex-col sm:w-4/6">
         <h1 class="text-2xl font-bold">DA-Cars</h1>
-        <h2 class="mb-5 w-3/4 text-xl font-semibold">
+        <h2 class="mb-5 w-11/12 text-xl font-semibold sm:w-3/4">
           {{ $t("sub_title") }}
         </h2>
         <div class="mb-2 flex items-center">
