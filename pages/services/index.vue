@@ -1,7 +1,7 @@
 <template>
-  <div class="my-10 px-20">
+  <div class="my-10 px-2 sm:px-20">
     <h1 class="my-5 text-3xl font-semibold">{{ $t("our_services") }}</h1>
-    <div class="grid grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <NuxtLink
         :to="localePath(`/services/${service.id}`)"
         v-for="service in services"

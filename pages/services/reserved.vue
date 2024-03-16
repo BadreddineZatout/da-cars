@@ -1,7 +1,7 @@
 <template>
-  <div class="my-40 px-52 text-center">
+  <div class="my-20 px-5 text-center sm:my-40 sm:px-52">
     <svg
-      class="mx-auto h-40 text-lochmara"
+      class="mx-auto h-32 text-lochmara sm:h-40"
       data-slot="icon"
       aria-hidden="true"
       fill="none"
@@ -16,7 +16,7 @@
         stroke-linejoin="round"
       ></path>
     </svg>
-    <h1 class="mb-10 text-4xl font-bold">
+    <h1 class="mb-10 text-3xl font-bold sm:text-4xl">
       {{ $t("reservation_created") }} <br />
       {{ $t("we_will_contact_you_soon") }}
     </h1>

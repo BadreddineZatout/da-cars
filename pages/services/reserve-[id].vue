@@ -1,7 +1,15 @@
 <template>
-  <div class="grid grid-cols-2 gap-5 px-40 py-20">
+  <div
+    class="grid grid-cols-1 gap-5 px-5 py-16 sm:grid-cols-2 sm:px-40 sm:py-20"
+  >
+    <div class="col-span-1 sm:hidden">
+      <h1 class="text-2xl font-bold text-lochmara sm:text-3xl">
+        {{ service.name }}
+      </h1>
+      <p class="mt-5 indent-5">{{ service.description }}</p>
+    </div>
     <div class="col-span-1">
-      <h1 class="text-3xl font-bold text-lochmara">
+      <h1 class="text-2xl font-bold text-lochmara sm:text-3xl">
         {{ $t("make_appointment") }}
       </h1>
       <form>
@@ -135,8 +143,10 @@
         </button>
       </form>
     </div>
-    <div class="col-span-1">
-      <h1 class="text-3xl font-bold text-lochmara">{{ service.name }}</h1>
+    <div class="col-span-1 hidden sm:block">
+      <h1 class="text-2xl font-bold text-lochmara sm:text-3xl">
+        {{ service.name }}
+      </h1>
       <p class="mt-5 indent-5">{{ service.description }}</p>
     </div>
   </div>
