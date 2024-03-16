@@ -1,24 +1,24 @@
 <template>
   <div class="w-full px-5 py-10">
-    <h1 class="text-3xl font-bold">Vehicles</h1>
+    <h1 class="text-3xl font-bold">{{ $t("vehicles") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter vehicle..." />
+        <UInput v-model.lazy="search" :placeholder="$t('filter_vehicles')" />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add vehicle"
+          :label="$t('add_vehicle')"
         />
       </div>
       <UTable :columns="columns" :rows="vehicles">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
-            <span class="text-sm italic">Empty!</span>
+            <span class="text-sm italic">{{ $t("empty") }}</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
-              label="Add vehicle"
+              :label="$t('add_vehicle')"
             />
           </div>
         </template>
@@ -100,45 +100,48 @@ definePageMeta({
   middleware: ["auth"],
 });
 
+const localePath = useLocalePath();
+const { t } = useI18n();
+
 const vehicles = ref(await $fetch("/api/admin/vehicles"));
 const vehicles_count = await $fetch("/api/admin/vehicles/count");
 
 const columns = [
   {
     key: "id",
-    label: "ID",
+    label: "#",
   },
   {
     key: "name",
-    label: "Name",
+    label: t("name"),
   },
   {
     key: "brand",
-    label: "Brand",
+    label: t("brand"),
   },
   {
     key: "price",
-    label: "Price",
+    label: t("price"),
   },
   {
     key: "phone",
-    label: "Phone",
+    label: t("phone_number"),
   },
   {
     key: "address",
-    label: "Address",
+    label: t("address"),
   },
   {
     key: "isPremium",
-    label: "Premium",
+    label: t("premium"),
   },
   {
     key: "rating",
-    label: "Rating",
+    label: t("rating"),
   },
   {
     key: "owner",
-    label: "Owner",
+    label: t("owner"),
   },
   {
     key: "actions",
@@ -148,17 +151,17 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
-      click: () => navigateTo(`/admin/vehicles/${row.id}`),
+      click: () => navigateTo(localePath(`/admin/vehicles/${row.id}`)),
     },
     {
-      label: "Edit",
+      label: t("edit"),
       icon: "i-heroicons-pencil-square-20-solid",
-      click: () => navigateTo(`/admin/vehicles/${row.id}/edit`),
+      click: () => navigateTo(localePath(`/admin/vehicles/${row.id}/edit`)),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },
@@ -191,7 +194,7 @@ watch([search, skip], async () => {
 });
 
 const handleCreate = () => {
-  return navigateTo("/admin/vehicles/create");
+  return navigateTo(localePath("/admin/vehicles/create"));
 };
 
 const confirmDelete = (id) => {

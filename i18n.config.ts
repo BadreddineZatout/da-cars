@@ -57,6 +57,7 @@ export default defineI18nConfig(() => ({
       settings: "Paramèters",
       log_out: "Se Déconnecter",
       carousel_media: "Médias Carrousel",
+      media: "Média",
       submit: "Soumettre",
       empty: "Vide!",
       view: "Voir",
@@ -100,6 +101,12 @@ export default defineI18nConfig(() => ({
         "Êtes-vous sûr de vouloir completer ce reservation?",
       confirm_cancel_reservation:
         "Êtes-vous sûr de vouloir annuler ce reservation?",
+      filter_vehicles: "Filtrer véhicules ...",
+      add_vehicle: "Ajouter véhicule",
+      edit_vehicle: "Modifier véhicule",
+      vehicle: "Véhicule",
+      owner: "Propriétaire",
+      address: "Adresse",
     },
     de: {
       admin: "Admin",
@@ -157,6 +164,7 @@ export default defineI18nConfig(() => ({
       settings: "Einstellungen",
       log_out: "Abmelden",
       carousel_media: "Karussellmedien",
+      media: "Medien",
       submit: "Vorlegen",
       empty: "Leer!",
       view: "Siehe",
@@ -202,6 +210,12 @@ export default defineI18nConfig(() => ({
         "Sind Sie sicher, dass Sie diese Reservierung abschließen möchten?",
       confirm_cancel_reservation:
         "Sind Sie sicher, dass Sie diese Reservierung stornieren möchten?",
+      filter_vehicles: "Fahrzeuge filtern ...",
+      add_vehicle: "Fahrzeug hinzufügen",
+      edit_vehicle: "Fahrzeug bearbeiten",
+      vehicle: "Fahrzeug",
+      owner: "Eigentümer",
+      address: "Adresse",
     },
   },
 }));
