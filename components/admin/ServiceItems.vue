@@ -1,6 +1,6 @@
 <template>
   <div class="mt-10">
-    <h1 class="text-3xl font-bold">{{ $t("prices") }}</h1>
+    <h1 class="text-2xl font-bold sm:text-3xl">{{ $t("prices") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
