@@ -40,7 +40,7 @@ const localePath = useLocalePath();
 const items = [
   [
     {
-      label: "home",
+      label: "Home",
       path: "/",
     },
     {
