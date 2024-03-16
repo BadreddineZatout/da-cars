@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">{{ $t("add_user") }}</h1>
+    <h1 class="text-2xl font-bold sm:text-3xl">{{ $t("add_user") }}</h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"

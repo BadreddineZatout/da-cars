@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Edit Vehicle #{{ vehicle.id }}</h1>
+  <div class="w-full px-5 py-20 sm:px-20">
+    <h1 class="text-2xl font-bold sm:text-3xl">
+      Edit Vehicle #{{ vehicle.id }}
+    </h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"
@@ -74,11 +76,11 @@
           />
         </UFormGroup>
 
-        <div class="flex flex-wrap gap-10">
+        <div class="flex flex-wrap gap-5 sm:gap-10">
           <div
             v-for="image in vehicle.media"
             :key="image.id"
-            class="relative w-1/4"
+            class="relative w-1/3 sm:w-1/4"
           >
             <img :src="image.path" :alt="image.name" />
             <UButton

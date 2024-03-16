@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">{{ $t("add_tag") }}</h1>
+  <div class="w-full px-5 py-20 sm:px-20">
+    <h1 class="text-2xl font-bold sm:text-3xl">{{ $t("add_tag") }}</h1>
     <div class="mt-20 w-full">
       <UForm :schema="schema" :state="tag" class="space-y-4" @submit="onSubmit">
         <div class="flex items-center justify-between gap-10">

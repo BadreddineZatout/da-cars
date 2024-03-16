@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">{{ $t("edit_tag") }} #{{ tag.tagId }}</h1>
+  <div class="w-full px-5 py-20 sm:px-20">
+    <h1 class="text-2xl font-bold sm:text-3xl">
+      {{ $t("edit_tag") }} #{{ tag.tagId }}
+    </h1>
     <div class="mt-20 w-full">
       <UFormGroup :label="$t('name')" name="name">
         <UInput v-model="tag.tag.name" disabled />

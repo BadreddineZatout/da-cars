@@ -1,6 +1,8 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">{{ $t("edit_user") }} #{{ user.id }}</h1>
+    <h1 class="text-2xl font-bold sm:text-3xl">
+      {{ $t("edit_user") }} #{{ user.id }}
+    </h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"

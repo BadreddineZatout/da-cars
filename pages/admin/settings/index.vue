@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">{{ $t("settings") }}</h1>
+  <div class="w-full p-5 sm:p-20">
+    <h1 class="text-2xl font-bold sm:text-3xl">{{ $t("settings") }}</h1>
     <div class="mt-10 w-full">
       <UForm class="space-y-4" @submit="onSubmit">
         <UFormGroup
@@ -23,7 +23,11 @@
         </UButton>
       </UForm>
       <div class="mt-10 flex flex-wrap gap-10">
-        <div v-for="image in media" :key="image.id" class="relative w-1/4">
+        <div
+          v-for="image in media"
+          :key="image.id"
+          class="relative w-full sm:w-1/4"
+        >
           <img :src="image.path" alt="carousel image" />
           <UButton
             class="absolute right-2 top-2 rounded-full bg-red-500 font-bold hover:bg-red-600"

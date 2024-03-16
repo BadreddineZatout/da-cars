@@ -95,6 +95,11 @@ export default defineI18nConfig(() => ({
       confirm_delete_service: "Êtes-vous sûr de vouloir supprimer ce service?",
       confirm_delete_reservation:
         "Êtes-vous sûr de vouloir supprimer ce reservation?",
+      confirm_delete_vehicle:
+        "Êtes-vous sûr de vouloir supprimer cette véhicule?",
+      confirm_delete_feature:
+        "Êtes-vous sûr de vouloir supprimer cette caractéristique?",
+      confirm_delete_tag: "Êtes-vous sûr de vouloir supprimer ce tag?",
       confirm_accept_reservation:
         "Êtes-vous sûr de vouloir accepter ce reservation?",
       confirm_complete_reservation:
@@ -219,6 +224,12 @@ export default defineI18nConfig(() => ({
         "Sind Sie sicher, dass Sie diesen Dienst löschen möchten?",
       confirm_delete_reservation:
         "Sind Sie sicher, dass Sie diese Reservierung löschen möchten?",
+      confirm_delete_vehicle:
+        "Sind Sie sicher, dass Sie diese Fahrzeug löschen möchten?",
+      confirm_delete_feature:
+        "Sind Sie sicher, dass Sie diese Merkmal löschen möchten?",
+      confirm_delete_tag:
+        "Sind Sie sicher, dass Sie diese Tag löschen möchten?",
       confirm_accept_reservation:
         "Sind Sie sicher, dass Sie diese Reservierung annehmen möchten?",
       confirm_complete_reservation:

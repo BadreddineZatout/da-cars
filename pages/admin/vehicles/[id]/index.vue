@@ -1,7 +1,9 @@
 <template>
-  <div class="w-full p-20">
+  <div class="w-full px-5 py-20 sm:px-20">
     <div class="flex items-center justify-between">
-      <h1 class="text-3xl font-bold">{{ $t("vehicle") }} #{{ vehicle.id }}</h1>
+      <h1 class="text-2xl font-bold sm:text-3xl">
+        {{ $t("vehicle") }} #{{ vehicle.id }}
+      </h1>
       <UButton
         @click="handleEdit"
         class="bg-lochmara hover:bg-blue-700"
@@ -105,7 +107,7 @@
         v-slot="{ item }"
         :items="vehicle.media"
         :ui="{ item: 'basis-full' }"
-        class="w-1/2 overflow-hidden rounded-lg"
+        class="w-full overflow-hidden rounded-lg sm:w-1/2"
         arrows
       >
         <img :src="item.path" class="w-full" draggable="false" />
