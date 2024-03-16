@@ -60,7 +60,7 @@
           <NuxtLink
             class="w-full text-left font-bold"
             :to="localePath(item.path)"
-            >{{ item.label }}</NuxtLink
+            >{{ $t(item.label) }}</NuxtLink
           >
         </template>
       </UDropdown>
