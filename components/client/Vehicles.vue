@@ -1,9 +1,11 @@
 <template>
-  <div class="my-10 px-20">
+  <div class="my-10 px-2 sm:px-20">
     <div
       class="my-5 flex items-center justify-between border-b border-lochmara"
     >
-      <h1 class="text-3xl font-semibold">{{ $t("recommanded_for_you") }}</h1>
+      <h1 class="text-2xl font-semibold sm:text-3xl">
+        {{ $t("recommanded_for_you") }}
+      </h1>
       <NuxtLink
         class="flex items-center hover:font-semibold hover:underline"
         :to="localePath('/vehicles')"
@@ -25,7 +27,7 @@
           ></path></svg
       ></NuxtLink>
     </div>
-    <div class="grid grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
       <Vehicle
         v-for="vehicle in vehicles"
         :key="vehicle.id"

@@ -1,9 +1,11 @@
 <template>
-  <div class="my-10 px-20">
-    <h1 class="my-5 border-b border-lochmara text-3xl font-semibold">
+  <div class="my-10 px-2 sm:px-20">
+    <h1
+      class="my-5 border-b border-lochmara text-2xl font-semibold sm:text-3xl"
+    >
       {{ $t("services") }}
     </h1>
-    <div class="grid grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
       <div
         v-for="service in services"
         :key="service.id"

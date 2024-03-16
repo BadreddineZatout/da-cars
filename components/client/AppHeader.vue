@@ -67,7 +67,7 @@
       <UDropdown
         class="sm:ml-5"
         :items="items"
-        mode="hover"
+        mode="click"
         :popper="{ placement: 'bottom-start' }"
       >
         <UButton

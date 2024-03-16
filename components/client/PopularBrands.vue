@@ -1,9 +1,9 @@
 <template>
-  <div class="my-10 px-20">
+  <div class="my-10 px-2 sm:px-20">
     <h1 class="my-5 border-b border-lochmara text-3xl font-semibold">
       {{ $t("popular_brands") }}
     </h1>
-    <div class="grid grid-cols-6 gap-y-5 p-5">
+    <div class="grid grid-cols-2 gap-y-5 p-5 sm:grid-cols-3 md:grid-cols-6">
       <div v-for="brand in brands" :key="brand.id">
         <h2 class="text-xl font-semibold">{{ brand.name }}</h2>
         <p v-for="sub_brand in brand.subBrands" :key="sub_brand">
