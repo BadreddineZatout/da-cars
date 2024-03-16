@@ -1,17 +1,17 @@
 <template>
   <div class="w-full p-20">
     <div class="flex items-center justify-between">
-      <h1 class="text-3xl font-bold">Feature #{{ feature.id }}</h1>
+      <h1 class="text-3xl font-bold">{{ $t("feature") }} #{{ feature.id }}</h1>
       <UButton
         @click="handleEdit"
         class="bg-lochmara hover:bg-blue-700"
-        label="Edit feature"
+        :label="$t('edit_feature')"
       />
     </div>
     <div class="mt-20 w-full">
       <UCard>
         <template #header>
-          <h2 class="text-2xl font-semibold">Name</h2>
+          <h2 class="text-2xl font-semibold">{{ $t("name") }}</h2>
           <h3 class="mt-3 text-xl">{{ feature.name }}</h3>
         </template>
       </UCard>
@@ -24,6 +24,7 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
 
 const route = useRoute();
 const { data: feature } = await useFetch(
@@ -32,7 +33,9 @@ const { data: feature } = await useFetch(
 
 const handleEdit = () => {
   return navigateTo(
-    `/admin/services/${route.params.id}/features/${route.params.feature}/edit`,
+    localePath(
+      `/admin/vehicles/${route.params.id}/features/${route.params.feature}/edit`,
+    ),
   );
 };
 </script>

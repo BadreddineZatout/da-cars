@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Add Feature</h1>
+    <h1 class="text-3xl font-bold">{{ $t("add_feature") }}</h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"
@@ -8,12 +8,12 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup label="name" name="name">
+        <UFormGroup :label="$t('name')" name="name">
           <UInput v-model="feature.name" />
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -26,6 +26,7 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
 const { t } = useI18n();
 const route = useRoute();
 
@@ -47,7 +48,7 @@ const onSubmit = async () => {
   );
 
   if (!response.errors) {
-    return navigateTo(`/admin/vehicles/${route.params.id}`);
+    return navigateTo(localePath(`/admin/vehicles/${route.params.id}`));
   }
 };
 </script>
