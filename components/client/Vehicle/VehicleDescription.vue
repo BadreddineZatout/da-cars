@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="mt-10 border-b border-lochmara py-3 text-xl font-semibold">
-      Vehicle description according to the supplier
+      {{ $t("vehicle_description") }}
     </h1>
     <p class="mt-5 indent-5">
       {{ description }}

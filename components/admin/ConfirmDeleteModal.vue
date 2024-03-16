@@ -7,10 +7,12 @@
       }"
     >
       <template #header>
-        <h1 class="text-xl font-bold">Delete {{ name }} #{{ toDelete }}</h1>
+        <h1 class="text-xl font-bold">
+          {{ $t("delete") }} {{ $t(name.toLowerCase()) }} #{{ toDelete }}
+        </h1>
       </template>
 
-      <p>Are you sure you want to delete this {{ name.toLowerCase() }}?</p>
+      <p>{{ $t("confirm_delete_" + name.toLowerCase()) }}</p>
 
       <template #footer>
         <div class="flex justify-end">

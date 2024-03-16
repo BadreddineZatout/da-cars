@@ -7,10 +7,12 @@
       }"
     >
       <template #header>
-        <h1 class="text-xl font-bold">Accept {{ name }} #{{ toAccept }}</h1>
+        <h1 class="text-xl font-bold">
+          {{ $t("accept") }} {{ $t(name.toLowerCase()) }} #{{ toAccept }}
+        </h1>
       </template>
 
-      <p>Are you sure you want to accept this {{ name.toLowerCase() }}?</p>
+      <p>{{ $t("confirm_accept_" + name.toLowerCase()) }}</p>
 
       <template #footer>
         <div class="flex justify-end">

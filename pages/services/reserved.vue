@@ -17,15 +17,14 @@
       ></path>
     </svg>
     <h1 class="mb-10 text-4xl font-bold">
-      Your reservation was created
-      <span class="text-lochmara">successfully</span>! <br />
-      We will contact you soon.
+      {{ $t("reservation_created") }} <br />
+      {{ $t("we_will_contact_you_soon") }}
     </h1>
     <NuxtLink
       class="rounded-lg bg-lochmara px-5 py-2.5 text-center text-lg font-medium text-white hover:bg-blue-800"
       to="/"
     >
-      Return to home page
+      {{ $t("return_to_home_page") }}
     </NuxtLink>
   </div>
 </template>

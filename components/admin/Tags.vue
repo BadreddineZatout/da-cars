@@ -1,22 +1,25 @@
 <template>
   <div class="mt-10">
-    <h1 class="text-3xl font-bold">Tags</h1>
+    <h1 class="text-3xl font-bold">{{ $t("tags") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model="search" placeholder="Filter tag..." />
+        <UInput v-model="search" :placeholder="$t('filter_tags')" />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add tag"
+          :label="$t('add_tag')"
         />
       </div>
       <UTable :columns="columns" :rows="filteredRows">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
             <span class="text-sm italic">Empty!</span>
-            <UButton class="bg-lochmara hover:bg-blue-700" label="Add tag" />
+            <UButton
+              class="bg-lochmara hover:bg-blue-700"
+              :label="$t('add_tag')"
+            />
           </div>
         </template>
         <template #name-data="{ row }">
@@ -40,7 +43,7 @@
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        name="Tag"
+        name="tag"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -50,19 +53,21 @@
 
 <script setup>
 const props = defineProps(["vehicle", "tags"]);
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const columns = [
   {
     key: "tagId",
-    label: "ID",
+    label: "#",
   },
   {
     key: "name",
-    label: "Name",
+    label: t("name"),
   },
   {
     key: "value",
-    label: "Value",
+    label: t("value"),
   },
   {
     key: "actions",
@@ -72,19 +77,23 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
       click: () =>
-        navigateTo(`/admin/vehicles/${props.vehicle}/tags/${row.tagId}`),
+        navigateTo(
+          localePath(`/admin/vehicles/${props.vehicle}/tags/${row.tagId}`),
+        ),
     },
     {
-      label: "Edit",
+      label: t("edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () =>
-        navigateTo(`/admin/vehicles/${props.vehicle}/tags/${row.tagId}/edit`),
+        navigateTo(
+          localePath(`/admin/vehicles/${props.vehicle}/tags/${row.tagId}/edit`),
+        ),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.tagId),
     },
@@ -112,7 +121,7 @@ const filteredRows = computed(() => {
 });
 
 const handleCreate = () => {
-  return navigateTo(`/admin/vehicles/${props.vehicle}/tags/create`);
+  return navigateTo(localePath(`/admin/vehicles/${props.vehicle}/tags/create`));
 };
 
 const confirmDelete = (id) => {

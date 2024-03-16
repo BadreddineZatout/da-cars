@@ -77,15 +77,16 @@
     </div>
   </div>
   <div class="w-full border-b border-lochmara pb-5 text-right">
-    <a
-      :href="`/vehicles/${vehicle.id}`"
+    <NuxtLink
+      :to="localePath(`/vehicles/${vehicle.id}`)"
       class="rounded-lg border border-lochmara px-6 py-3 hover:bg-lochmara hover:text-white hover:shadow-md"
     >
-      Details
-    </a>
+      {{ $t("details") }}
+    </NuxtLink>
   </div>
 </template>
 
 <script setup>
 const props = defineProps(["vehicle"]);
+const localePath = useLocalePath();
 </script>

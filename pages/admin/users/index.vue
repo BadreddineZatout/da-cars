@@ -1,22 +1,25 @@
 <template>
   <div class="w-full px-5 py-10">
-    <h1 class="text-3xl font-bold">Users</h1>
+    <h1 class="text-3xl font-bold">{{ $t("users") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter user..." />
+        <UInput v-model.lazy="search" :placeholder="$t('filter_user')" />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add user"
+          :label="$t('add_user')"
         />
       </div>
       <UTable :columns="columns" :rows="users">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
-            <span class="text-sm italic">Empty!</span>
-            <UButton class="bg-lochmara hover:bg-blue-700" label="Add user" />
+            <span class="text-sm italic">{{ $t("empty") }}</span>
+            <UButton
+              class="bg-lochmara hover:bg-blue-700"
+              :label="$t('add_user')"
+            />
           </div>
         </template>
         <template #actions-data="{ row }">
@@ -37,7 +40,7 @@
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        name="User"
+        name="user"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -50,6 +53,8 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const users = ref(await $fetch("/api/users"));
 const users_count = await $fetch("/api/users/count");
@@ -57,15 +62,15 @@ const users_count = await $fetch("/api/users/count");
 const columns = [
   {
     key: "id",
-    label: "ID",
+    label: "#",
   },
   {
     key: "name",
-    label: "Name",
+    label: t("name"),
   },
   {
     key: "email",
-    label: "Email",
+    label: t("email"),
   },
   {
     key: "actions",
@@ -75,17 +80,17 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
       click: () => navigateTo(`/admin/users/${row.id}`),
     },
     {
-      label: "Edit",
+      label: t("edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () => navigateTo(`/admin/users/${row.id}/edit`),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },
@@ -118,7 +123,7 @@ watch([search, skip], async () => {
 });
 
 const handleCreate = () => {
-  return navigateTo("/admin/users/create");
+  return navigateTo(localePath("/admin/users/create"));
 };
 
 const confirmDelete = (id) => {

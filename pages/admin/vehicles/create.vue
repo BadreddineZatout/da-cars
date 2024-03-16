@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Add Vehicle</h1>
+    <h1 class="text-3xl font-bold">{{ $t("add_vehicle") }}</h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"
@@ -9,10 +9,10 @@
         @submit="onSubmit"
       >
         <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" label="name" name="name">
+          <UFormGroup class="w-1/2" :label="$t('name')" name="name">
             <UInput v-model="vehicle.name" />
           </UFormGroup>
-          <UFormGroup class="w-1/2" label="brand" name="brand">
+          <UFormGroup class="w-1/2" :label="$t('brand')" name="brand">
             <USelect
               placeholder="Select Brand..."
               v-model="vehicle.brand"
@@ -26,26 +26,26 @@
           </UFormGroup>
         </div>
 
-        <UFormGroup label="description" name="description">
+        <UFormGroup :label="$t('description')" name="description">
           <UTextarea v-model="vehicle.description" />
         </UFormGroup>
 
         <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" label="price" name="price">
+          <UFormGroup class="w-1/2" :label="$t('price')" name="price">
             <UInput v-model="vehicle.price" type="number" />
           </UFormGroup>
 
-          <UFormGroup class="w-1/2" label="phone" name="phone">
+          <UFormGroup class="w-1/2" :label="$t('phone_number')" name="phone">
             <UInput v-model="vehicle.phone" type="tel" />
           </UFormGroup>
         </div>
 
         <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" label="owner" name="owner">
+          <UFormGroup class="w-1/2" :label="$t('owner')" name="owner">
             <UInput v-model="vehicle.owner" />
           </UFormGroup>
 
-          <UFormGroup class="w-1/2" label="rating" name="rating">
+          <UFormGroup class="w-1/2" :label="$t('rating')" name="rating">
             <USelect
               v-model="vehicle.rating"
               placeholder="Select Rating..."
@@ -54,15 +54,15 @@
           </UFormGroup>
         </div>
         <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" label="address" name="address">
+          <UFormGroup class="w-1/2" :label="$t('address')" name="address">
             <UInput v-model="vehicle.address" />
           </UFormGroup>
 
-          <UFormGroup class="w-1/2" label="isPremium" name="isPremium">
+          <UFormGroup class="w-1/2" :label="$t('premium')" name="isPremium">
             <UToggle v-model="vehicle.isPremium" />
           </UFormGroup>
         </div>
-        <UFormGroup class="w-1/2" label="Media" name="media">
+        <UFormGroup class="w-1/2" :label="$t('media')" name="media">
           <input
             class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-lg text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
             id="media"
@@ -72,7 +72,7 @@
           />
         </UFormGroup>
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -85,16 +85,20 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const schema = object({
-  name: string().required("Required"),
-  description: string().required("Required"),
-  brand: number().required("Required"),
-  price: number().min(0, "Price must be greater than 0").required("Required"),
-  phone: string().required("Required"),
-  address: string().required("Required"),
-  owner: string().required("Required"),
-  rating: number().required("Required"),
+  name: string().required(t("required")),
+  description: string().required(t("required")),
+  brand: number().required(t("required")),
+  price: number()
+    .min(0, "Price must be greater than 0")
+    .required(t("required")),
+  phone: string().required(t("required")),
+  address: string().required(t("required")),
+  owner: string().required(t("required")),
+  rating: number().required(t("required")),
   isPremium: boolean(),
 });
 
@@ -138,7 +142,7 @@ const onSubmit = async () => {
   });
 
   if (!response.errors) {
-    return navigateTo("/admin/vehicles");
+    return navigateTo(localePath("/admin/vehicles"));
   }
 };
 

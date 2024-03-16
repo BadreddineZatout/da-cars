@@ -1,7 +1,7 @@
 <template>
-  <a
+  <NuxtLink
     class="col-span-1 overflow-hidden rounded-lg border border-lochmara pb-3 hover:mx-5 hover:scale-105 hover:shadow-lg"
-    :href="`/vehicles/${vehicle.id}`"
+    :to="localePath(`/vehicles/${vehicle.id}`)"
   >
     <div>
       <img :src="vehicle.media[0]?.path" alt="" />
@@ -22,9 +22,10 @@
     <div class="mt-5 px-5">
       <p class="text-gray-400">{{ vehicle.address }}</p>
     </div>
-  </a>
+  </NuxtLink>
 </template>
 
 <script setup>
 const props = defineProps(["vehicle"]);
+const localePath = useLocalePath();
 </script>

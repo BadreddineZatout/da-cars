@@ -2,7 +2,7 @@
   <div class="px-4 py-5">
     <form class="mx-auto max-w-sm">
       <Select
-        label="Brand"
+        :label="$t('brand')"
         :options="
           brands?.map((brand) => {
             return { name: brand.name, value: brand.id };
@@ -14,23 +14,23 @@
       <Number
         @input="handleMinPriceInput"
         class="mt-5"
-        label="Min Price"
+        :label="$t('min_price')"
         min="0"
       />
       <Number
         @input="handleMaxPriceInput"
         class="mt-5"
-        label="Max Price"
+        :label="$t('max_price')"
         min="0"
       />
       <Number
         @input="handleRatingPriceInput"
         class="mt-5"
-        label="Rating"
+        :label="$t('rating')"
         :min="0"
         :max="5"
       />
-      <Toggle @toggle="handleToggle" class="mt-5" label="Premium" />
+      <Toggle @toggle="handleToggle" class="mt-5" :label="$t('premium')" />
       <ul
         v-if="errors.length"
         class="mt-5 list-disc px-5 font-semibold text-red-500"
@@ -43,13 +43,13 @@
           class="w-1/3 rounded-lg border border-lochmara px-5 py-2 text-lochmara hover:bg-lochmara hover:text-white"
           @click="handleApplyFilters"
         >
-          Apply
+          {{ $t("apply") }}
         </button>
         <button
           class="w-1/3 rounded-lg border border-red-500 px-5 py-2 text-red-500 hover:bg-red-500 hover:text-white"
           @click="handleClearFilters"
         >
-          Clear
+          {{ $t("clear") }}
         </button>
       </div>
     </form>

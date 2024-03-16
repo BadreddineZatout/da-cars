@@ -1,24 +1,24 @@
 <template>
   <div class="mt-10">
-    <h1 class="text-3xl font-bold">Features</h1>
+    <h1 class="text-3xl font-bold">{{ $t("features") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter feature..." />
+        <UInput v-model.lazy="search" :placeholder="$t('filter_features')" />
         <UButton
           @click="handleCreate"
           class="bg-lochmara hover:bg-blue-700"
-          label="Add feature"
+          :label="$t('add_feature')"
         />
       </div>
       <UTable :columns="columns" :rows="features">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
-            <span class="text-sm italic">Empty!</span>
+            <span class="text-sm italic">{{ $t("empty") }}</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
-              label="Add feature"
+              :label="$t('add_feature')"
             />
           </div>
         </template>
@@ -44,7 +44,7 @@
     </div>
     <UModal v-model="isOpen">
       <ConfirmDeleteModal
-        name="Feature"
+        name="feature"
         :toDelete="toDelete"
         @confirm-delete="handleDelete"
       />
@@ -54,6 +54,8 @@
 
 <script setup>
 const props = defineProps(["vehicle"]);
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const features = ref(await $fetch(`/api/vehicles/${props.vehicle}/features`));
 const features_count = await $fetch(
@@ -63,11 +65,11 @@ const features_count = await $fetch(
 const columns = [
   {
     key: "id",
-    label: "ID",
+    label: "#",
   },
   {
     key: "name",
-    label: "Name",
+    label: t("name"),
   },
   {
     key: "actions",
@@ -77,19 +79,25 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
       click: () =>
-        navigateTo(`/admin/vehicles/${props.vehicle}/features/${row.id}`),
+        navigateTo(
+          localePath(`/admin/vehicles/${props.vehicle}/features/${row.id}`),
+        ),
     },
     {
-      label: "Edit",
+      label: t("edit"),
       icon: "i-heroicons-pencil-square-20-solid",
       click: () =>
-        navigateTo(`/admin/vehicles/${props.vehicle}/features/${row.id}/edit`),
+        navigateTo(
+          localePath(
+            `/admin/vehicles/${props.vehicle}/features/${row.id}/edit`,
+          ),
+        ),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },
@@ -122,7 +130,9 @@ watch([search, skip], async () => {
 });
 
 const handleCreate = () => {
-  return navigateTo(`/admin/vehicles/${props.vehicle}/features/create`);
+  return navigateTo(
+    localePath(`/admin/vehicles/${props.vehicle}/features/create`),
+  );
 };
 
 const confirmDelete = (id) => {

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Edit User #{{ user.id }}</h1>
+    <h1 class="text-3xl font-bold">{{ $t("edit_user") }} #{{ user.id }}</h1>
     <div class="mt-20 w-full">
       <UForm
         :schema="schema"
@@ -8,19 +8,19 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup label="name" name="name">
+        <UFormGroup :label="$t('name')" name="name">
           <UInput v-model="user.name" />
         </UFormGroup>
 
-        <UFormGroup label="email" name="email">
+        <UFormGroup :label="$t('email')" name="email">
           <UInput v-model="user.email" type="email" />
         </UFormGroup>
-        <UFormGroup label="password" name="password">
+        <UFormGroup :label="$t('password')" name="password">
           <UInput v-model="password" type="password" />
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -33,10 +33,12 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const schema = object({
-  name: string().required("Required"),
-  email: string().email().required("Required"),
+  name: string().required(t("required")),
+  email: string().email().required(t("required")),
   password: string().optional(),
 });
 
@@ -59,7 +61,7 @@ const onSubmit = async () => {
   });
 
   if (!response.errors) {
-    return navigateTo("/admin/users");
+    return navigateTo(localePath("/admin/users"));
   }
 };
 </script>

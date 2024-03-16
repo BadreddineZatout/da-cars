@@ -1,11 +1,11 @@
 <template>
   <div class="w-full p-20">
     <div class="flex items-center justify-between">
-      <h1 class="text-3xl font-bold">Vehicle #{{ vehicle.id }}</h1>
+      <h1 class="text-3xl font-bold">{{ $t("vehicle") }} #{{ vehicle.id }}</h1>
       <UButton
         @click="handleEdit"
         class="bg-lochmara hover:bg-blue-700"
-        label="Edit vehicle"
+        :label="$t('edit_vehicle')"
       />
     </div>
     <div class="mt-20 w-full">
@@ -13,11 +13,11 @@
         <template #header>
           <div class="flex flex-wrap items-center">
             <div class="w-1/2">
-              <h2 class="text-2xl font-semibold">Name</h2>
+              <h2 class="text-2xl font-semibold">{{ $t("name") }}</h2>
               <h3 class="mt-3 text-xl">{{ vehicle.name }}</h3>
             </div>
             <div class="w-1/2">
-              <h2 class="text-2xl font-semibold">Owner</h2>
+              <h2 class="text-2xl font-semibold">{{ $t("owner") }}</h2>
               <h3 class="mt-3 text-xl">{{ vehicle.owner }}</h3>
             </div>
           </div>
@@ -25,31 +25,31 @@
 
         <div class="mb-10 flex flex-wrap gap-10">
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Price</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("price") }}</h2>
             <p class="mt-3 text-xl">{{ vehicle.price }} €</p>
           </div>
 
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Brand</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("brand") }}</h2>
             <p class="mt-3 text-xl">
               {{ vehicle.brand.name }}
             </p>
           </div>
 
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Phone</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("phone_number") }}</h2>
             <p class="mt-3 text-xl">
               {{ vehicle.phone }}
             </p>
           </div>
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Address</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("address") }}</h2>
             <p class="mt-3 text-xl">
               {{ vehicle.address }}
             </p>
           </div>
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Is Premium</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("premium") }}</h2>
             <svg
               v-if="vehicle.isPremium"
               class="mt-2 w-10 text-green-500"
@@ -86,12 +86,12 @@
             </svg>
           </div>
           <div class="w-1/4">
-            <h2 class="text-2xl font-semibold">Rating</h2>
+            <h2 class="text-2xl font-semibold">{{ $t("rating") }}</h2>
             <Rating class="mt-2" :rating="vehicle.rating" />
           </div>
         </div>
 
-        <h2 class="text-2xl font-semibold">Description</h2>
+        <h2 class="text-2xl font-semibold">{{ $t("description") }}</h2>
         <p class="mt-3 indent-5 text-xl">{{ vehicle.description }}</p>
       </UCard>
     </div>
@@ -100,7 +100,7 @@
     <Tags :tags="vehicle.tags" :vehicle="vehicle.id" />
 
     <div class="mt-10">
-      <h1 class="mb-10 text-3xl font-bold">Media</h1>
+      <h1 class="mb-10 text-3xl font-bold">{{ $t("media") }}</h1>
       <UCarousel
         v-slot="{ item }"
         :items="vehicle.media"
@@ -119,11 +119,12 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
 
 const route = useRoute();
 const { data: vehicle } = await useFetch(`/api/vehicles/${route.params.id}`);
 
 const handleEdit = () => {
-  return navigateTo(`/admin/vehicles/${vehicle.value.id}/edit`);
+  return navigateTo(localePath(`/admin/vehicles/${vehicle.value.id}/edit`));
 };
 </script>

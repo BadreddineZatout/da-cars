@@ -1,17 +1,17 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Edit Tag #{{ tag.tagId }}</h1>
+    <h1 class="text-3xl font-bold">{{ $t("edit_tag") }} #{{ tag.tagId }}</h1>
     <div class="mt-20 w-full">
-      <UFormGroup label="name" name="name">
+      <UFormGroup :label="$t('name')" name="name">
         <UInput v-model="tag.tag.name" disabled />
       </UFormGroup>
       <UForm :schema="schema" :state="tag" class="space-y-4" @submit="onSubmit">
-        <UFormGroup label="value" name="value">
+        <UFormGroup :label="$t('value')" name="value">
           <UInput v-model="tag.value" />
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -24,9 +24,10 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
-
+const localePath = useLocalePath();
+const { t } = useI18n();
 const schema = object({
-  value: string().required("Required"),
+  value: string().required(t("required")),
 });
 const route = useRoute();
 const { data: tag } = await useFetch(
@@ -45,7 +46,7 @@ const onSubmit = async () => {
   );
 
   if (!response.errors) {
-    return navigateTo(`/admin/vehicles/${route.params.id}`);
+    return navigateTo(localePath(`/admin/vehicles/${route.params.id}`));
   }
 };
 </script>

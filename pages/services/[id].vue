@@ -2,15 +2,15 @@
   <div class="w-full px-32 py-20">
     <div class="flex items-center justify-between">
       <h1 class="text-3xl font-bold text-lochmara">{{ service.name }}</h1>
-      <a
+      <NuxtLink
         class="rounded-lg border-2 border-lochmara px-4 py-2 font-semibold text-lochmara hover:bg-lochmara hover:text-white"
-        :href="`/services/reserve-${service.id}`"
-        >Reserve</a
+        :to="localePath(`/services/reserve-${service.id}`)"
+        >{{ $t("reserve") }}</NuxtLink
       >
     </div>
     <p class="mt-5 indent-5">{{ service.description }}</p>
     <div v-if="service.items.length" class="mt-10">
-      <h2 class="text-3xl font-semibold">Prices</h2>
+      <h2 class="text-3xl font-semibold">{{ $t("prices") }}</h2>
       <ul class="list-disc px-60 text-xl">
         <li
           v-for="item in service.items"
@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+const localePath = useLocalePath();
 const route = useRoute();
 const { data: service } = await useFetch(`/api/services/${route.params.id}`);
 </script>

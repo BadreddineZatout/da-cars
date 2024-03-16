@@ -1,24 +1,22 @@
 <template>
   <div class="w-full px-5 py-10">
-    <h1 class="text-3xl font-bold">Reservations</h1>
+    <h1 class="text-3xl font-bold">{{ $t("reservations") }}</h1>
     <div class="mt-10">
       <div
         class="flex items-center justify-between border-b border-gray-200 px-3 py-3.5 dark:border-gray-700"
       >
-        <UInput v-model.lazy="search" placeholder="Filter reservation..." />
-        <UButton
-          @click="handleCreate"
-          class="bg-lochmara hover:bg-blue-700"
-          label="Add reservation"
+        <UInput
+          v-model.lazy="search"
+          :placeholder="$t('filter_reservations')"
         />
       </div>
       <UTable :columns="columns" :rows="reservations">
         <template #empty-state>
           <div class="flex flex-col items-center justify-center gap-3 py-6">
-            <span class="text-sm italic">Empty!</span>
+            <span class="text-sm italic">{{ $t("empty") }}</span>
             <UButton
               class="bg-lochmara hover:bg-blue-700"
-              label="Add reservation"
+              :label="$t('add_reservation')"
             />
           </div>
         </template>
@@ -39,21 +37,23 @@
             v-if="row.status == Status.PENDING"
             color="yellow"
             variant="solid"
-            >Pending</UBadge
+            >{{ $t("pending") }}</UBadge
           >
           <UBadge
             v-else-if="row.status == Status.ACCEPTED"
             color="green"
             variant="solid"
-            >Accepted</UBadge
+            >{{ $t("accepted") }}</UBadge
           >
           <UBadge
             v-else-if="row.status == Status.COMPLETED"
             color="blue"
             variant="solid"
-            >Completed</UBadge
+            >{{ $t("completed") }}</UBadge
           >
-          <UBadge v-else color="red" variant="solid">Cancelled</UBadge>
+          <UBadge v-else color="red" variant="solid">{{
+            $t("cancelled")
+          }}</UBadge>
         </template>
         <template #actions-data="{ row }">
           <UDropdown :items="items(row)">
@@ -93,6 +93,8 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const reservations = ref(await $fetch("/api/reservations"));
 const reservations_count = await $fetch("/api/reservations/count");
@@ -104,35 +106,35 @@ const columns = [
   },
   {
     key: "first_name",
-    label: "First Name",
+    label: t("first_name"),
   },
   {
     key: "last_name",
-    label: "Last Name",
+    label: t("last_name"),
   },
   {
     key: "phone_number",
-    label: "Phone",
+    label: t("phone_number"),
   },
   {
     key: "email",
-    label: "Email",
+    label: t("email"),
   },
   {
     key: "service",
-    label: "Service",
+    label: t("service"),
   },
   {
     key: "item",
-    label: "Item",
+    label: t("item"),
   },
   {
     key: "date",
-    label: "Date",
+    label: t("date"),
   },
   {
     key: "status",
-    label: "Status",
+    label: t("status"),
   },
   {
     key: "actions",
@@ -142,12 +144,12 @@ const columns = [
 const items = (row) => [
   [
     {
-      label: "View",
+      label: t("view"),
       icon: "i-heroicons-eye-20-solid",
-      click: () => navigateTo(`/admin/reservations/${row.id}`),
+      click: () => navigateTo(localePath(`/admin/reservations/${row.id}`)),
     },
     {
-      label: "Delete",
+      label: t("delete"),
       icon: "i-heroicons-trash-20-solid",
       click: () => confirmDelete(row.id),
     },

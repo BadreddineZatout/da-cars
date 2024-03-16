@@ -1,6 +1,6 @@
 <template>
   <Description />
-  <div v-if="images.length" class="px-36">
+  <div v-if="images?.length" class="px-36">
     <Carousel :media="images" />
   </div>
   <Services :services="services" />
