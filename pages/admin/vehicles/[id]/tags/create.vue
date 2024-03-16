@@ -1,22 +1,22 @@
 <template>
   <div class="w-full p-20">
-    <h1 class="text-3xl font-bold">Add Tag</h1>
+    <h1 class="text-3xl font-bold">{{ $t("add_tag") }}</h1>
     <div class="mt-20 w-full">
       <UForm :schema="schema" :state="tag" class="space-y-4" @submit="onSubmit">
         <div class="flex items-center justify-between gap-10">
-          <UFormGroup class="w-1/2" label="Choose a tag" name="name">
+          <UFormGroup class="w-1/2" :label="$t('choose_tag')" name="name">
             <USelect
-              placeholder="Select Tag..."
+              :placeholder="$t('select_tag')"
               v-model="tag.id"
               :options="tags"
               option-attribute="name"
             />
           </UFormGroup>
-          <UFormGroup class="w-1/2" label="Or add a new one" name="name">
-            <UInput placeholder="Add New Tag..." v-model="tag.name" />
+          <UFormGroup class="w-1/2" :label="$t('or_add_new_one')" name="name">
+            <UInput :placeholder="$t('add_new_tag')" v-model="tag.name" />
           </UFormGroup>
         </div>
-        <UFormGroup label="value" name="value">
+        <UFormGroup :label="$t('value')" name="value">
           <UInput v-model="tag.value" />
         </UFormGroup>
 
@@ -30,7 +30,7 @@
         </ul>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
-          Submit
+          {{ $t("submit") }}
         </UButton>
       </UForm>
     </div>
@@ -43,6 +43,7 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const localePath = useLocalePath();
 const { t } = useI18n();
 const route = useRoute();
 
@@ -78,7 +79,7 @@ const onSubmit = async () => {
   );
 
   if (!response.errors) {
-    return navigateTo(`/admin/vehicles/${route.params.id}`);
+    return navigateTo(localePath(`/admin/vehicles/${route.params.id}`));
   }
   errors.value = response.errors;
 };

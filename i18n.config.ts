@@ -118,6 +118,10 @@ export default defineI18nConfig(() => ({
       add_tag: "Ajouter tag",
       edit_tag: "Modifier tag",
       value: "Valeur",
+      choose_tag: "Choisissez un tag",
+      select_tag: "Sélectionnez un tag",
+      or_add_new_one: "Ou ajoutez-en un nouveau",
+      add_new_tag: "Ajouter un nouveau tag ...",
     },
     de: {
       admin: "Admin",
@@ -238,6 +242,10 @@ export default defineI18nConfig(() => ({
       add_tag: "Tag hinzufügen",
       edit_tag: "Tag bearbeiten",
       value: "Wert",
+      choose_tag: "Wählen Sie einen Tag",
+      select_tag: "Auswählen Sie einen Tag",
+      or_add_new_one: "Oder fügen Sie einen neuen Tag hinzu",
+      add_new_tag: "Neuen Tag hinzufügen...",
     },
   },
 }));
