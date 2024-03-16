@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 px-5">
+  <div class="mt-10 sm:px-5">
     <h1 class="border-b border-lochmara py-3 text-xl font-semibold">
       {{ $t("technical_data") }}
     </h1>
