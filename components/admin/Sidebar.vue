@@ -119,7 +119,7 @@
         </li>
         <li>
           <NuxtLink
-            to="/admin/users"
+            :to="localePath('/admin/users')"
             class="group flex items-center rounded-lg p-2 hover:font-semibold hover:text-lochmara"
             :class="{ 'text-lochmara': $route.path.includes('/admin/users') }"
           >
