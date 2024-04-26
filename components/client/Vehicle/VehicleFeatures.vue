@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10 sm:px-5">
+  <div class="mt-10 dark:bg-inherit sm:px-5">
     <h1 class="border-b border-lochmara py-3 text-xl font-semibold">
       {{ $t("equipment") }}
     </h1>
@@ -7,7 +7,7 @@
       <div
         v-for="(feature, index) in features"
         :key="feature.id"
-        class="col-span-1 flex items-center justify-between px-3 py-2 font-semibold"
+        class="col-span-1 flex items-center justify-between px-3 py-2 font-semibold dark:bg-inherit"
         :class="{
           'bg-white': index % 4 === 0 || index % 4 === 1,
           'bg-gray-100': index % 4 === 2 || index % 4 === 3,

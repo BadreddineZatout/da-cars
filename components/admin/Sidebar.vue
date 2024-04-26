@@ -5,7 +5,7 @@
         <img class="h-20" src="/logo.jpg" alt="logo" />
       </NuxtLink>
     </div>
-    <div class="h-full px-3 text-white dark:bg-gray-800">
+    <div class="h-full px-3 text-white dark:bg-inherit">
       <ul class="space-y-5 font-medium">
         <li>
           <NuxtLink

@@ -1,7 +1,7 @@
 <template>
   <div class="my-10 grid grid-cols-1 gap-5 px-5 sm:grid-cols-3 sm:px-60">
     <div
-      class="col-span-1 h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm sm:hidden"
+      class="col-span-1 h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm dark:bg-inherit sm:hidden"
     >
       <div class="border-b border-lochmara pb-5">
         <h1 class="text-2xl font-bold">{{ vehicle.brand.name }}</h1>
@@ -32,7 +32,7 @@
       />
     </div>
     <div
-      class="col-span-1 hidden h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm sm:block"
+      class="col-span-1 hidden h-fit rounded-sm border border-lochmara bg-white px-5 py-3 shadow-sm dark:bg-inherit sm:block"
     >
       <div class="border-b border-lochmara pb-5">
         <h1 class="text-2xl font-bold">{{ vehicle.brand.name }}</h1>

@@ -9,9 +9,9 @@
       <div
         v-for="service in services"
         :key="service.id"
-        class="col-span-1 rounded-md border border-black bg-gray-50 p-5 text-center text-2xl hover:cursor-pointer hover:border-2 hover:font-semibold"
+        class="col-span-1 rounded-md border border-black bg-gray-50 p-5 text-center text-2xl hover:cursor-pointer hover:border-2 hover:font-semibold dark:border-lochmara dark:bg-inherit"
       >
-        <NuxtLink :to="localePath(`services/${service.id}`)">{{
+        <NuxtLink :to="localePath(`/services/${service.id}`)">{{
           service.name
         }}</NuxtLink>
       </div>

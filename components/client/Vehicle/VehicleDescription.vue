@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dark:bg-inherit">
     <h1 class="mt-10 border-b border-lochmara py-3 text-xl font-semibold">
       {{ $t("vehicle_description") }}
     </h1>

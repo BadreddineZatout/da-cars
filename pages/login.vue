@@ -16,7 +16,7 @@
       <div class="mb-5 grid">
         <label class="font-semibold" for="email">{{ $t("email") }}</label>
         <input
-          class="rounded-md border border-gray-500 px-3 py-2"
+          class="rounded-md border border-gray-500 px-3 py-2 dark:bg-inherit"
           id="email"
           name="email"
           type="email"
@@ -27,7 +27,7 @@
       <div class="mb-5 grid">
         <label class="font-semibold" for="password">{{ $t("password") }}</label>
         <input
-          class="rounded-md border border-gray-500 px-3 py-2"
+          class="rounded-md border border-gray-500 px-3 py-2 dark:bg-inherit"
           id="password"
           name="password"
           type="password"
