@@ -33,8 +33,6 @@
   </div>
 </template>
 
-<script setup></script>
-
 <style scoped>
 li > span {
   @apply font-semibold;
