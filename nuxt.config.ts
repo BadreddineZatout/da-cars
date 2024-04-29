@@ -9,6 +9,13 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    public: {
+      posthogPublicKey: "phc_bpZLDvmrx6ZPRfL5dIXNqS0jEk56HhXGsHnaZ5HI7Hr",
+      posthogHost: "https://us.i.posthog.com",
+    },
+  },
+
   components: [
     {
       path: "~/components",
