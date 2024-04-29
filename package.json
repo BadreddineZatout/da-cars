@@ -26,6 +26,7 @@
     "nuxt": "^3.10.3",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "posthog-js": "^1.130.0",
     "prettier": "^3.2.5",
     "prisma": "^5.10.2",
     "vue": "^3.4.19",
