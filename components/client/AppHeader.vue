@@ -139,12 +139,12 @@ const nav_items = store.isLogged
 const items = [
   [
     {
-      label: "Français",
-      local: "fr",
-    },
-    {
       label: "Deutsch",
       local: "de",
+    },
+    {
+      label: "Français",
+      local: "fr",
     },
   ],
 ];
