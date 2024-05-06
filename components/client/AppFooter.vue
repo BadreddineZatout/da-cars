@@ -80,11 +80,18 @@
       </div>
     </div>
     <div class="text-center text-gray-400">
-      © DA-CARS – 2023. All rights reserved
+      © DA-CARS – 2024. All rights reserved -
+      <NuxtLink :to="localePath('/impressum')"> {{ $t("imprint") }} </NuxtLink>
+      -
+      <NuxtLink :to="localePath('/privacy-policy')">
+        {{ $t("privacy_policy") }}
+      </NuxtLink>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+const localePath = useLocalePath();
+</script>
 
 <style scoped></style>

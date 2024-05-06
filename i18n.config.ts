@@ -127,6 +127,8 @@ export default defineI18nConfig(() => ({
       select_tag: "Sélectionnez un tag",
       or_add_new_one: "Ou ajoutez-en un nouveau",
       add_new_tag: "Ajouter un nouveau tag ...",
+      privacy_policy: "Politique de confidentialité",
+      imprint: "Informations",
     },
     de: {
       admin: "Admin",
@@ -257,6 +259,8 @@ export default defineI18nConfig(() => ({
       select_tag: "Auswählen Sie einen Tag",
       or_add_new_one: "Oder fügen Sie einen neuen Tag hinzu",
       add_new_tag: "Neuen Tag hinzufügen...",
+      privacy_policy: "Datenschutzrichtlinie",
+      imprint: "Impressum",
     },
   },
 }));
