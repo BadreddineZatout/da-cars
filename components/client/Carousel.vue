@@ -1,7 +1,7 @@
 <template>
   <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h-56 overflow-hidden md:h-96">
+    <div class="relative h-56 overflow-hidden md:h-[500px]">
       <div
         v-for="image in media"
         :key="image.id"
@@ -10,7 +10,7 @@
       >
         <img
           :src="image.path"
-          class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
+          class="absolute left-1/2 top-1/2 block w-full md:w-3/4 -translate-x-1/2 -translate-y-1/2"
           alt="..."
         />
       </div>
