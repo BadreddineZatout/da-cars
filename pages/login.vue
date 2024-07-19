@@ -65,6 +65,8 @@
 <script setup>
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
+const localePath = useLocalePath();
+
 const email = ref("");
 const password = ref("");
 let errorMessages = ref({});
@@ -88,7 +90,7 @@ const handleSubmit = async (event) => {
     store.isLogged = true;
     store.user = user;
     store.token = token;
-    return navigateTo("/admin");
+    return navigateTo(localePath("/admin"));
   }
   errorMessages.value = errors;
 };
