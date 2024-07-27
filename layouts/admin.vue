@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>Admin</Title>
+    <Title>Da Cars - Admin</Title>
   </Head>
   <div class="relative flex">
     <div class="absolute right-2 top-2 sm:hidden">
