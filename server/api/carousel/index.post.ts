@@ -8,10 +8,7 @@ type CarouselMedia = {
 export default defineEventHandler(async (event) => {
   const media: CarouselMedia[] = [];
   const { fields, files, form } = await readFiles(event, {
-    uploadDir:
-      process.env.APP_ENV == "production"
-        ? ".output/public/images"
-        : "public/images",
+    uploadDir: process.env.IMG_UPLOAD_DIR,
     createDirsFromUploads: true,
     filename(name, ext, part, form) {
       let filename = part.originalFilename ?? "image";
