@@ -41,10 +41,6 @@
         </div>
 
         <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" :label="$t('owner')" name="owner">
-            <UInput v-model="vehicle.owner" />
-          </UFormGroup>
-
           <UFormGroup class="w-1/2" :label="$t('rating')" name="rating">
             <USelect
               v-model="vehicle.rating"
@@ -52,12 +48,6 @@
               :options="[1, 2, 3, 4, 5]"
             />
           </UFormGroup>
-        </div>
-        <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" :label="$t('address')" name="address">
-            <UInput v-model="vehicle.address" />
-          </UFormGroup>
-
           <UFormGroup class="w-1/2" :label="$t('premium')" name="isPremium">
             <UToggle v-model="vehicle.isPremium" />
           </UFormGroup>
@@ -108,8 +98,8 @@ const vehicle = reactive({
   brand: undefined,
   price: undefined,
   phone: undefined,
-  address: undefined,
-  owner: undefined,
+  address: "Pirmasenser Straße 98 • 66482 Zweibrücken",
+  owner: "DA Cars",
   rating: undefined,
   isPremium: false,
 });

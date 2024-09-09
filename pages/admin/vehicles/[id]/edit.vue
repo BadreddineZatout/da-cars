@@ -44,10 +44,6 @@
         </div>
 
         <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" label="owner" name="owner">
-            <UInput v-model="vehicle.owner" />
-          </UFormGroup>
-
           <UFormGroup class="w-1/2" label="rating" name="rating">
             <USelect
               v-model="vehicle.rating"
@@ -55,12 +51,6 @@
               :options="[1, 2, 3, 4, 5]"
             />
           </UFormGroup>
-        </div>
-        <div class="flex justify-between gap-5">
-          <UFormGroup class="w-1/2" label="address" name="address">
-            <UInput v-model="vehicle.address" />
-          </UFormGroup>
-
           <UFormGroup class="w-1/2" label="isPremium" name="isPremium">
             <UToggle v-model="vehicle.isPremium" />
           </UFormGroup>
