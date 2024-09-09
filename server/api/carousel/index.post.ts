@@ -1,6 +1,7 @@
 import prisma from "~/prisma";
 import { readFiles } from "h3-formidable";
-import { firstValues, readBooleans } from "h3-formidable/helpers";
+
+const runtimeConfig = useRuntimeConfig();
 
 type CarouselMedia = {
   path: string;
@@ -8,12 +9,12 @@ type CarouselMedia = {
 export default defineEventHandler(async (event) => {
   const media: CarouselMedia[] = [];
   const { fields, files, form } = await readFiles(event, {
-    uploadDir: process.env.IMG_UPLOAD_DIR,
+    uploadDir: runtimeConfig.public.uploadDir,
     createDirsFromUploads: true,
     filename(name, ext, part, form) {
       let filename = part.originalFilename ?? "image";
       media.push({
-        path: "/images/" + filename,
+        path: `/${runtimeConfig.public.uploadDir}/${filename}`,
       });
       return filename;
     },

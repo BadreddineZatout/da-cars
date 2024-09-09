@@ -3,6 +3,8 @@ import { z } from "zod";
 import { readFiles } from "h3-formidable";
 import { firstValues, readBooleans } from "h3-formidable/helpers";
 
+const runtimeConfig = useRuntimeConfig();
+
 const bodySchema = z.object({
   name: z.coerce.string(),
   description: z.coerce.string(),
@@ -22,13 +24,13 @@ type Media = {
 export default defineEventHandler(async (event) => {
   const media: Media[] = [];
   const { fields, files, form } = await readFiles(event, {
-    uploadDir: process.env.IMG_UPLOAD_DIR,
+    uploadDir: runtimeConfig.public.uploadDir,
     createDirsFromUploads: true,
     filename(name, ext, part, form) {
       let filename = part.originalFilename ?? "image";
       media.push({
         name: filename,
-        path: "/images/" + filename,
+        path: `/${runtimeConfig.public.uploadDir}/${filename}`,
       });
       return filename;
     },

@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     public: {
       posthogPublicKey: "phc_bpZLDvmrx6ZPRfL5dIXNqS0jEk56HhXGsHnaZ5HI7Hr",
       posthogHost: "https://us.i.posthog.com",
+      uploadDir: process.env.IMG_UPLOAD_DIR
     },
   },
 

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.14.2",
+    "@nuxtjs/dotenv": "^1.4.2",
     "@pinia/nuxt": "^0.5.1",
     "@prisma/client": "^5.10.2",
     "@vuepic/vue-datepicker": "^8.2.0",
