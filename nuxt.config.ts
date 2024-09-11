@@ -29,7 +29,11 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
+    'nuxt-mapbox'
   ],
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoiYmFkcmVkZGluZS05OSIsImEiOiJjbTB5ZGd4b3UwaWxkMm1zNmVxZzRpNjVkIn0.VNZK05FvnH-uEGYFR5DXag'
+  },
 
   i18n: {
     vueI18n: "./i18n.config.ts",
