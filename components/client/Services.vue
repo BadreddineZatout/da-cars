@@ -12,7 +12,7 @@
         class="col-span-1 rounded-md border border-black bg-gray-50 p-5 text-center text-2xl hover:cursor-pointer hover:border-2 hover:font-semibold dark:border-lochmara dark:bg-inherit"
       >
         <NuxtLink :to="localePath(`/services/${service.id}`)">{{
-          service.name
+          locale == "fr" ? service.name_fr : service.name_de
         }}</NuxtLink>
       </div>
     </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script setup>
+const { locale } = useI18n();
 const props = defineProps(["services"]);
 const localePath = useLocalePath();
 </script>

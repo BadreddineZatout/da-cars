@@ -14,11 +14,11 @@
       <UCard>
         <template #header>
           <h2 class="text-2xl font-semibold">{{ $t("name") }}</h2>
-          <h3 class="mt-3 text-xl">{{ service.name }}</h3>
+          <h3 class="mt-3 text-xl">{{ locale == 'fr' ? service.name_fr : service.name_de }}</h3>
         </template>
 
         <h2 class="text-2xl font-semibold">{{ $t("description") }}</h2>
-        <p class="mt-3 indent-5 text-xl">{{ service.description }}</p>
+        <p class="mt-3 indent-5 text-xl">{{  locale == 'fr' ? service.description_fr : service.description_de }}</p>
       </UCard>
     </div>
     <ServiceItems :service="service.id" />
@@ -30,6 +30,7 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const { locale } = useI18n();
 const localePath = useLocalePath();
 const route = useRoute();
 const { data: service } = await useFetch(`/api/services/${route.params.id}`);

@@ -4,9 +4,9 @@
   >
     <div class="col-span-1 sm:hidden">
       <h1 class="text-2xl font-bold text-lochmara sm:text-3xl">
-        {{ service.name }}
+        {{ locale == "fr" ? service.name_fr : service.name_de }}
       </h1>
-      <p class="mt-5 indent-5">{{ service.description }}</p>
+      <p class="mt-5 indent-5">{{ locale == "fr" ? service.description_fr : service.description_de }}</p>
     </div>
     <div class="col-span-1">
       <h1 class="text-2xl font-bold text-lochmara sm:text-3xl">
@@ -109,7 +109,7 @@
               :key="item.id"
               :value="item.id"
             >
-              {{ item.name }} -- {{ item.price }}€
+              {{ locale == "fr" ? item.name_fr : item.name_de }} -- {{ item.price }}€
             </option>
           </select>
         </div>
@@ -156,6 +156,7 @@
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
+const { locale } = useI18n();
 const route = useRoute();
 const { data: service } = await useFetch(`/api/services/${route.params.id}`);
 

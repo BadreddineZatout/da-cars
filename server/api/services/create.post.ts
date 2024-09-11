@@ -2,8 +2,10 @@ import prisma from "~/prisma";
 import { z } from "zod";
 
 const bodySchema = z.object({
-  name: z.coerce.string(),
-  description: z.coerce.string(),
+  name_de: z.coerce.string(),
+  name_fr: z.coerce.string(),
+  description_de: z.coerce.string(),
+  description_fr: z.coerce.string(),
 });
 
 export default defineEventHandler(async (event) => {

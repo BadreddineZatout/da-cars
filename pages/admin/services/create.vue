@@ -8,12 +8,19 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$t('name')" name="name">
-          <UInput v-model="service.name" />
+        <UFormGroup :label="$t('name DE')" name="name_de">
+          <UInput v-model="service.name_de" />
         </UFormGroup>
 
-        <UFormGroup :label="$t('description')" name="description">
-          <UTextarea v-model="service.description" />
+        <UFormGroup :label="$t('name FR')" name="name_fr">
+          <UInput v-model="service.name_fr" />
+        </UFormGroup>
+
+        <UFormGroup :label="$t('description DE')" name="description_de">
+          <UTextarea v-model="service.description_de" />
+        </UFormGroup>
+        <UFormGroup :label="$t('description FR')" name="description_fr">
+          <UTextarea v-model="service.description_fr" />
         </UFormGroup>
 
         <UButton type="submit" class="bg-lochmara hover:bg-blue-700">
@@ -33,13 +40,17 @@ definePageMeta({
 const { t } = useI18n();
 const localePath = useLocalePath();
 const schema = object({
-  name: string().required(t("required")),
-  description: string().required(t("required")),
+  name_de: string().required(t("required")),
+  name_fr: string().required(t("required")),
+  description_de: string().required(t("required")),
+  description_fr: string().required(t("required")),
 });
 
 const service = reactive({
-  name: undefined,
-  description: undefined,
+  name_de: undefined,
+  name_fr: undefined,
+  description_de: undefined,
+  description_fr: undefined,
 });
 
 const onSubmit = async () => {

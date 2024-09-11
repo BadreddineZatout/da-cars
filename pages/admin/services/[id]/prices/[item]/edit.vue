@@ -10,8 +10,11 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$t('name')" name="name">
-          <UInput v-model="price.name" />
+        <UFormGroup :label="$t('name DE')" name="name_de">
+          <UInput v-model="price.name_de" />
+        </UFormGroup>
+        <UFormGroup :label="$t('name FR')" name="name_fr">
+          <UInput v-model="price.name_fr" />
         </UFormGroup>
 
         <UFormGroup :label="$t('price')" name="price">
@@ -35,7 +38,8 @@ definePageMeta({
 const { t } = useI18n();
 const localePath = useLocalePath();
 const schema = object({
-  name: string().required(t("required")),
+  name_de: string().required(t("required")),
+  name_fr: string().required(t("required")),
   price: number().required(t("required")),
 });
 const route = useRoute();
@@ -45,7 +49,8 @@ const onSubmit = async () => {
   const response = await $fetch(`/api/prices/${price.value.id}`, {
     method: "PUT",
     body: {
-      name: price.value.name,
+      name_de: price.value.name_de,
+      name_fr: price.value.name_fr,
       price: price.value.price,
     },
   });

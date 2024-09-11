@@ -8,8 +8,11 @@
         class="space-y-4"
         @submit="onSubmit"
       >
-        <UFormGroup :label="$t('name')" name="name">
-          <UInput v-model="price.name" />
+        <UFormGroup :label="$t('name DE')" name="name_de">
+          <UInput v-model="price.name_de" />
+        </UFormGroup>
+        <UFormGroup :label="$t('name FR')" name="name_fr">
+          <UInput v-model="price.name_fr" />
         </UFormGroup>
 
         <UFormGroup :label="$t('price')" name="price">
@@ -35,12 +38,14 @@ const { t } = useI18n();
 const route = useRoute();
 
 const schema = object({
-  name: string().required(t("required")),
+  name_de: string().required(t("required")),
+  name_fr: string().required(t("required")),
   price: number().required(t("required")),
 });
 
 const price = reactive({
-  name: undefined,
+  name_de: undefined,
+  name_fr: undefined,
   price: undefined,
 });
 

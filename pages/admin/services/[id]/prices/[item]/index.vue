@@ -14,7 +14,7 @@
       <UCard>
         <template #header>
           <h2 class="text-2xl font-semibold">{{ $t("name") }}</h2>
-          <h3 class="mt-3 text-xl">{{ price.name }}</h3>
+          <h3 class="mt-3 text-xl">{{ locale == 'fr' ? price.name_fr : price.name_de }}</h3>
         </template>
 
         <h2 class="text-2xl font-semibold">{{ $t("price") }}</h2>
@@ -29,6 +29,7 @@ definePageMeta({
   layout: "admin",
   middleware: ["auth"],
 });
+const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const route = useRoute();

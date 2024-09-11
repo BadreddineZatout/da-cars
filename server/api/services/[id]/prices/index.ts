@@ -24,11 +24,22 @@ export default defineEventHandler(async (event) => {
   return await prisma.item.findMany({
     skip: query.skip * query.take,
     take: query.take,
-    where: {
-      serviceId: parseInt(id),
-      name: {
-        contains: query.search,
-      },
-    },
+    where: query.search
+      ? {
+          serviceId: parseInt(id),
+          OR: [
+            {
+              name_de: {
+                contains: query.search,
+              },
+            },
+            {
+              name_fr: {
+                contains: query.search,
+              },
+            },
+          ],
+        }
+      : { serviceId: parseInt(id) },
   });
 });

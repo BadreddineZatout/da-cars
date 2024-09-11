@@ -17,10 +17,21 @@ export default defineEventHandler(async (event) => {
   return await prisma.service.findMany({
     skip: query.skip * query.take,
     take: query.take,
-    where: {
-      name: {
-        contains: query.search,
-      },
-    },
+    where: query.search
+      ? {
+          OR: [
+            {
+              name_de: {
+                contains: query.search,
+              },
+            },
+            {
+              name_fr: {
+                contains: query.search,
+              },
+            },
+          ],
+        }
+      : {},
   });
 });

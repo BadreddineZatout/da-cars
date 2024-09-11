@@ -27,15 +27,18 @@ model Brand {
 
 model Service {
   id           Int           @id @default(autoincrement())
-  name         String
-  description  String?
+  name_de      String
+  name_fr      String
+  description_de  String?
+  description_fr  String?
   items        Item[]
   reservations Reservation[]
 }
 
 model Item {
   id           Int           @id @default(autoincrement())
-  name         String
+  name_de      String
+  name_fr      String
   price        Float
   serviceId    Int
   service      Service       @relation(fields: [serviceId], references: [id], onDelete: Cascade, onUpdate: Cascade)

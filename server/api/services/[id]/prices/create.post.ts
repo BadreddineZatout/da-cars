@@ -2,7 +2,8 @@ import prisma from "~/prisma";
 import { z } from "zod";
 
 const bodySchema = z.object({
-  name: z.coerce.string(),
+  name_de: z.coerce.string(),
+  name_fr: z.coerce.string(),
   price: z.coerce.number(),
 });
 

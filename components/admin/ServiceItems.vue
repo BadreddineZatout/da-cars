@@ -63,8 +63,12 @@ const columns = [
     label: "#",
   },
   {
-    key: "name",
-    label: t("name"),
+    key: "name_de",
+    label: t("name DE"),
+  },
+  {
+    key: "name_fr",
+    label: t("name FR"),
   },
   {
     key: "price",
