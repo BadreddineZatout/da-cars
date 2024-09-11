@@ -11,8 +11,16 @@
         {{ $t("company_description") }}
       </p>
     </div>
-    <div class="hidden w-1/2 lg:block">
-      <img src="/images/cars-garage.png" alt="cars-garage" />
+    <div class="hidden w-1/2 lg:flex lg:justify-center">
+      <video
+        src="/da-cars.mp4"
+        autoPlay="autoplay"
+        loop="loop"
+        muted
+        className="object-cover relative w-auto min-w-full min-h-full max-w-none z-[-1]"
+        width="320" 
+        height="240"
+      />
     </div>
   </div>
 </template>
