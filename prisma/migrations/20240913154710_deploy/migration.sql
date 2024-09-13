@@ -23,8 +23,10 @@ CREATE TABLE `Brand` (
 -- CreateTable
 CREATE TABLE `Service` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NULL,
+    `name_de` VARCHAR(191) NOT NULL,
+    `name_fr` VARCHAR(191) NOT NULL,
+    `description_de` VARCHAR(191) NULL,
+    `description_fr` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -32,7 +34,8 @@ CREATE TABLE `Service` (
 -- CreateTable
 CREATE TABLE `Item` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
+    `name_de` VARCHAR(191) NOT NULL,
+    `name_fr` VARCHAR(191) NOT NULL,
     `price` DOUBLE NOT NULL,
     `serviceId` INTEGER NOT NULL,
 
