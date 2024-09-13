@@ -29,8 +29,24 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
-    'nuxt-mapbox'
+    'nuxt-mapbox',
+    'nuxt-nodemailer'
   ],
+
+  nodemailer: {
+    from: '"DA Cars" <contact@bold-feistel.212-132-125-98.plesk.page>',
+    host: 'bold-feistel.212-132-125-98.plesk.page',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'contact@bold-feistel.212-132-125-98.plesk.page',
+      pass: 'eO2uv$729',
+    },
+    tls: {
+      rejectUnauthorized: false // Allows self-signed certificates, if necessary
+    }
+  },
+
   mapbox: {
     accessToken: 'pk.eyJ1IjoiYmFkcmVkZGluZS05OSIsImEiOiJjbTB5ZGd4b3UwaWxkMm1zNmVxZzRpNjVkIn0.VNZK05FvnH-uEGYFR5DXag'
   },
